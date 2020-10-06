@@ -52,15 +52,19 @@
                                                         <rect key="frame" x="10" y="100" width="394" height="50"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lemon, Cheese, ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hig-Zu-8iq">
-                                                                <rect key="frame" x="0.0" y="8" width="316" height="34"/>
+                                                                <rect key="frame" x="0.0" y="3" width="316" height="44"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="44" id="apq-iQ-Drb"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zj3-1d-Ge1">
-                                                                <rect key="frame" x="324" y="8" width="70" height="34"/>
+                                                                <rect key="frame" x="324" y="3" width="70" height="44"/>
                                                                 <color key="backgroundColor" red="0.26827660199999998" green="0.58383494619999998" blue="0.36244666580000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="70" id="lVV-uN-KCH"/>
+                                                                    <constraint firstAttribute="height" constant="44" id="Quu-nH-uwW"/>
+                                                                    <constraint firstAttribute="width" secondItem="Zj3-1d-Ge1" secondAttribute="height" multiplier="35:22" id="Zio-bi-4ju"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                                                                 <state key="normal" title="Add">
@@ -104,10 +108,11 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6O-Ah-bgH">
-                                                        <rect key="frame" x="324" y="10.5" width="70" height="34"/>
+                                                        <rect key="frame" x="324" y="5.5" width="70" height="44"/>
                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="70" id="E6P-SY-aLV"/>
+                                                            <constraint firstAttribute="height" constant="44" id="7Oy-gb-LIy"/>
+                                                            <constraint firstAttribute="width" secondItem="i6O-Ah-bgH" secondAttribute="height" multiplier="35:22" id="eB2-TI-aPX"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                                                         <state key="normal" title="Clear">
@@ -149,6 +154,9 @@
                                 <state key="normal" title="Search for recipes">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="searchButtonTapped:" destination="vB3-Wp-n8V" eventType="touchUpInside" id="7Lg-AY-581"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Qyc-AK-yOF"/>

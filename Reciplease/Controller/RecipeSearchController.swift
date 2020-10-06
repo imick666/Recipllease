@@ -16,27 +16,30 @@ class RecipeSearchController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     
+    // MARK: - Properties
+    private let networkServices = NetworkServices()
+    
     var dataSource = [String]() {
         didSet {
             tableView.reloadData()
         }
     }
 
-    // MARK: - ViewCircle Life
+    // MARK: - ViewLife Circle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupButton()
         
         // Addd footer for tableview
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 84))
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupTextField()
     }
-    
     
     // MARK: - Methodes
     
@@ -50,7 +53,7 @@ class RecipeSearchController: UIViewController {
         addIngredientTextField.borderStyle = .none
         let underline = UIView()
         underline.backgroundColor = #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1)
-        underline.frame = CGRect(x: addIngredientTextField.bounds.minX, y: addIngredientTextField.bounds.maxY - 10, width: addIngredientTextField.bounds.width, height: 2)
+        underline.frame = CGRect(x: addIngredientTextField.bounds.minX, y: addIngredientTextField.bounds.maxY - 5, width: addIngredientTextField.bounds.width, height: 2)
         underline.alpha = 0.5
         addIngredientTextField.addSubview(underline)
     }
@@ -67,7 +70,21 @@ class RecipeSearchController: UIViewController {
     @IBAction func clearButtonTapped(_ sender: Any) {
         dataSource = []
     }
+    
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        let queries = [String]()
+        networkServices.getRecipes(q: queries) { (result) in
+            switch result {
+            case .failure(_):
+                return
+            case .success(_):
+                return
+            }
+        }
+    }
 }
+
+// MARK: - Extension TableView
 
 extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
     
@@ -98,9 +115,9 @@ extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - TableView Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard dataSource != [] else {
+            return
+        }
         dataSource.remove(at: indexPath.row)
     }
-    
-    
-    
 }
