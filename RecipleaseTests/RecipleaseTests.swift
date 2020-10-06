@@ -10,6 +10,24 @@ import XCTest
 
 class RecipleaseTests: XCTestCase {
     
+    func testNoResponse() {
+        let exp = expectation(description: "wait for queue")
+        let network = NetworkServices(session: FakeAlamoSession(response: nil,
+                                                                data: nil,
+                                                                error: nil))
+        
+        network.getRecipes(q: []) { (result) in
+            guard case .failure(let error) = result else {
+                XCTFail()
+                return
+            }
+            exp.fulfill()
+            XCTAssertEqual(error, .noResponse)
+        }
+        
+        wait(for: [exp], timeout: 0.01)
+    }
+    
     func testBadResponse() {
         let exp = expectation(description: "Wait for queue")
         
@@ -22,7 +40,7 @@ class RecipleaseTests: XCTestCase {
                 return
             }
             exp.fulfill()
-            XCTAssertEqual(error as! NetworkError, NetworkError.badResponse)
+            XCTAssertEqual(error, NetworkError.badResponse)
         }
         
         wait(for: [exp], timeout: 0.01)
@@ -40,7 +58,7 @@ class RecipleaseTests: XCTestCase {
                 return
             }
             exp.fulfill()
-            XCTAssertEqual(error as! NetworkError, .noData)
+            XCTAssertEqual(error, .noData)
         }
         
         wait(for: [exp], timeout: 0.01)
@@ -56,7 +74,7 @@ class RecipleaseTests: XCTestCase {
                 return
             }
             exp.fulfill()
-            XCTAssertEqual(error as! NetworkError, .dataUndecodable)
+            XCTAssertEqual(error, .dataUndecodable)
         }
         
         wait(for: [exp], timeout: 0.01)

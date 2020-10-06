@@ -8,6 +8,7 @@
 import Foundation
 
 struct RecipesModel: Decodable {
+    
     var hits: [HitsModel]
     
     struct HitsModel: Decodable {

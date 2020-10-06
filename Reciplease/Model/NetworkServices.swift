@@ -22,14 +22,20 @@ final class NetworkSession: AlamoSession {
 
 final class NetworkServices {
     
+    // MARK: - Properties
+    
     private let baseUrl = "https://api.edamam.com/search"
-    let sessions: AlamoSession
+    private let sessions: AlamoSession
+    
+    // MARK: - Init
     
     init(session: AlamoSession = NetworkSession()) {
         self.sessions = session
     }
     
-    func getRecipes(q: [String], completionHandler: @escaping (Result<RecipesModel, Error>) -> Void) {
+    // MARK: - Methodes
+    
+    func getRecipes(q: [String], completionHandler: @escaping (Result<RecipesModel, NetworkError>) -> Void) {
         
         var query: String {
             var param = ""
@@ -42,7 +48,11 @@ final class NetworkServices {
         let identification = ["q": query, "app_id": APIConfig.app_id, "app_key": APIConfig.app_key]
         
         sessions.request(url: baseUrl, parameters: identification) { (result) in
-            guard result.response?.statusCode == 200 else {
+            guard let response = result.response else {
+                completionHandler(.failure(NetworkError.noResponse))
+                return
+            }
+            guard response.statusCode == 200 else {
                 completionHandler(.failure(NetworkError.badResponse))
                 return
             }

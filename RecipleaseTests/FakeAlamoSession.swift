@@ -11,9 +11,13 @@ import Alamofire
 
 final class FakeAlamoSession: AlamoSession {
     
+    // MARK: - Properties
+    
     private var response: FakeResponse.response?
     private var data: FakeResponse.data?
     private var error: AFError?
+    
+    // MARK: - Init
     
     init(response: FakeResponse.response?,
          data: FakeResponse.data?,
@@ -22,6 +26,8 @@ final class FakeAlamoSession: AlamoSession {
         self.data = data
         self.error = error
     }
+    
+    // MARK: - Methodes
     
     func request(url: URLConvertible, parameters: [String : Any]?, callback: @escaping (AFDataResponse<Any>) -> Void) {
         
