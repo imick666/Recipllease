@@ -25,6 +25,9 @@
 		E07625FE252A02A30012BC41 /* RecipeSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07625FD252A02A30012BC41 /* RecipeSearchController.swift */; };
 		E0762603252A02BC0012BC41 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0762602252A02BC0012BC41 /* FavoriteController.swift */; };
 		E0762609252A11C50012BC41 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0762608252A11C50012BC41 /* UIButton.swift */; };
+		E0B2BD37252C8FDA00B39584 /* FakeAlamoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B2BD36252C8FDA00B39584 /* FakeAlamoSession.swift */; };
+		E0B2BD3C252C949600B39584 /* FakeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B2BD3B252C949600B39584 /* FakeResponse.swift */; };
+		E0B2BD41252CBE1B00B39584 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B2BD40252CBE1B00B39584 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		E07625FD252A02A30012BC41 /* RecipeSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchController.swift; sourceTree = "<group>"; };
 		E0762602252A02BC0012BC41 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		E0762608252A11C50012BC41 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		E0B2BD36252C8FDA00B39584 /* FakeAlamoSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAlamoSession.swift; sourceTree = "<group>"; };
+		E0B2BD3B252C949600B39584 /* FakeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponse.swift; sourceTree = "<group>"; };
+		E0B2BD40252CBE1B00B39584 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		F45CD7908A79F787844FE49E /* Pods-RecipleaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipleaseTests.release.xcconfig"; path = "Target Support Files/Pods-RecipleaseTests/Pods-RecipleaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		FC32F4937F4929C76EC0E005 /* Pods-Reciplease-RecipleaseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease-RecipleaseUITests.release.xcconfig"; path = "Target Support Files/Pods-Reciplease-RecipleaseUITests/Pods-Reciplease-RecipleaseUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,6 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				E0316A6F2529F95E00C33449 /* RecipleaseTests.swift */,
+				E0B2BD36252C8FDA00B39584 /* FakeAlamoSession.swift */,
+				E0B2BD3B252C949600B39584 /* FakeResponse.swift */,
 				E0316A712529F95E00C33449 /* Info.plist */,
 				E06881BD252B5132009C1230 /* RecipesResult.json */,
 			);
@@ -178,6 +186,7 @@
 				E0615B3C252B1ED3003AC191 /* APIConfig.swift */,
 				E0615B41252B1F9E003AC191 /* NetworkServices.swift */,
 				E0615B6A252B33E8003AC191 /* RecipesModel.swift */,
+				E0B2BD40252CBE1B00B39584 /* NetworkError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -487,6 +496,7 @@
 				E0762609252A11C50012BC41 /* UIButton.swift in Sources */,
 				E0615B42252B1F9E003AC191 /* NetworkServices.swift in Sources */,
 				E0615B3D252B1ED3003AC191 /* APIConfig.swift in Sources */,
+				E0B2BD41252CBE1B00B39584 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,7 +504,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0B2BD3C252C949600B39584 /* FakeResponse.swift in Sources */,
 				E0316A702529F95E00C33449 /* RecipleaseTests.swift in Sources */,
+				E0B2BD37252C8FDA00B39584 /* FakeAlamoSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +604,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -647,7 +659,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -666,7 +678,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6M3YC3LQG;
 				INFOPLIST_FILE = Reciplease/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -687,7 +699,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6M3YC3LQG;
 				INFOPLIST_FILE = Reciplease/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
