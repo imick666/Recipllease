@@ -13,25 +13,26 @@ final class FakeAlamoSession: AlamoSession {
     
     // MARK: - Properties
     
-    private var response: FakeResponse.response?
-    private var data: FakeResponse.data?
-    private var error: AFError?
+    private var fakeResponse: FakeResponse.response?
+    private var fakeData: FakeResponse.dataType?
+    private var fakeError: AFError?
     
     // MARK: - Init
     
     init(response: FakeResponse.response?,
-         data: FakeResponse.data?,
+         data: FakeResponse.dataType?,
          error: AFError?) {
-        self.response = response
-        self.data = data
-        self.error = error
+        self.fakeResponse = response
+        self.fakeData = data
+        self.fakeError = error
     }
     
     // MARK: - Methodes
     
     func request(url: URLConvertible, parameters: [String : Any]?, callback: @escaping (AFDataResponse<Any>) -> Void) {
         
-        let result = AFDataResponse<Any>(request: nil, response: response?.response, data: data?.data, metrics: nil, serializationDuration: 0, result: .success("ok".data(using: .utf8)!))
-        callback(result)
+        let request = AFDataResponse<Any>(request: nil, response: fakeResponse?.response, data: fakeData?.data, metrics: nil, serializationDuration: 0, result: .success("ok"))
+        
+        callback(request)
     }
 }

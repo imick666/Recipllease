@@ -16,7 +16,7 @@
 		E0316A602529F95D00C33449 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0316A5E2529F95D00C33449 /* Reciplease.xcdatamodeld */; };
 		E0316A622529F95E00C33449 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0316A612529F95E00C33449 /* Assets.xcassets */; };
 		E0316A652529F95E00C33449 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0316A632529F95E00C33449 /* LaunchScreen.storyboard */; };
-		E0316A702529F95E00C33449 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0316A6F2529F95E00C33449 /* RecipleaseTests.swift */; };
+		E0316A702529F95E00C33449 /* RecipesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0316A6F2529F95E00C33449 /* RecipesTests.swift */; };
 		E0316A7B2529F95E00C33449 /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0316A7A2529F95E00C33449 /* RecipleaseUITests.swift */; };
 		E0615B3D252B1ED3003AC191 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0615B3C252B1ED3003AC191 /* APIConfig.swift */; };
 		E0615B42252B1F9E003AC191 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0615B41252B1F9E003AC191 /* NetworkServices.swift */; };
@@ -28,6 +28,8 @@
 		E0B2BD37252C8FDA00B39584 /* FakeAlamoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B2BD36252C8FDA00B39584 /* FakeAlamoSession.swift */; };
 		E0B2BD3C252C949600B39584 /* FakeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B2BD3B252C949600B39584 /* FakeResponse.swift */; };
 		E0B2BD41252CBE1B00B39584 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B2BD40252CBE1B00B39584 /* NetworkError.swift */; };
+		E0E997C5252DFF9900E7D73C /* ImagesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E997C4252DFF9900E7D73C /* ImagesTest.swift */; };
+		E0E997D4252E007500E7D73C /* ImagesResult.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E0E997D3252E007500E7D73C /* ImagesResult.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +66,7 @@
 		E0316A642529F95E00C33449 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0316A662529F95E00C33449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0316A6B2529F95E00C33449 /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0316A6F2529F95E00C33449 /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
+		E0316A6F2529F95E00C33449 /* RecipesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesTests.swift; sourceTree = "<group>"; };
 		E0316A712529F95E00C33449 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0316A762529F95E00C33449 /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0316A7A2529F95E00C33449 /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
@@ -79,6 +81,8 @@
 		E0B2BD36252C8FDA00B39584 /* FakeAlamoSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAlamoSession.swift; sourceTree = "<group>"; };
 		E0B2BD3B252C949600B39584 /* FakeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponse.swift; sourceTree = "<group>"; };
 		E0B2BD40252CBE1B00B39584 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E0E997C4252DFF9900E7D73C /* ImagesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesTest.swift; sourceTree = "<group>"; };
+		E0E997D3252E007500E7D73C /* ImagesResult.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ImagesResult.jpg; sourceTree = "<group>"; };
 		F45CD7908A79F787844FE49E /* Pods-RecipleaseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RecipleaseTests.release.xcconfig"; path = "Target Support Files/Pods-RecipleaseTests/Pods-RecipleaseTests.release.xcconfig"; sourceTree = "<group>"; };
 		FC32F4937F4929C76EC0E005 /* Pods-Reciplease-RecipleaseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease-RecipleaseUITests.release.xcconfig"; path = "Target Support Files/Pods-Reciplease-RecipleaseUITests/Pods-Reciplease-RecipleaseUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -162,11 +166,11 @@
 		E0316A6E2529F95E00C33449 /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				E0316A6F2529F95E00C33449 /* RecipleaseTests.swift */,
+				E0E997CC252E004D00E7D73C /* RecipesTest */,
+				E0E997C3252DFF8D00E7D73C /* ImagesTest */,
 				E0B2BD36252C8FDA00B39584 /* FakeAlamoSession.swift */,
 				E0B2BD3B252C949600B39584 /* FakeResponse.swift */,
 				E0316A712529F95E00C33449 /* Info.plist */,
-				E06881BD252B5132009C1230 /* RecipesResult.json */,
 			);
 			path = RecipleaseTests;
 			sourceTree = "<group>";
@@ -215,6 +219,24 @@
 				E0762608252A11C50012BC41 /* UIButton.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		E0E997C3252DFF8D00E7D73C /* ImagesTest */ = {
+			isa = PBXGroup;
+			children = (
+				E0E997C4252DFF9900E7D73C /* ImagesTest.swift */,
+				E0E997D3252E007500E7D73C /* ImagesResult.jpg */,
+			);
+			path = ImagesTest;
+			sourceTree = "<group>";
+		};
+		E0E997CC252E004D00E7D73C /* RecipesTest */ = {
+			isa = PBXGroup;
+			children = (
+				E0316A6F2529F95E00C33449 /* RecipesTests.swift */,
+				E06881BD252B5132009C1230 /* RecipesResult.json */,
+			);
+			path = RecipesTest;
 			sourceTree = "<group>";
 		};
 		F9337518E2C1D063E6A21E4D /* Pods */ = {
@@ -349,6 +371,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E997D4252E007500E7D73C /* ImagesResult.jpg in Resources */,
 				E06881BE252B5132009C1230 /* RecipesResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,7 +528,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0B2BD3C252C949600B39584 /* FakeResponse.swift in Sources */,
-				E0316A702529F95E00C33449 /* RecipleaseTests.swift in Sources */,
+				E0E997C5252DFF9900E7D73C /* ImagesTest.swift in Sources */,
+				E0316A702529F95E00C33449 /* RecipesTests.swift in Sources */,
 				E0B2BD37252C8FDA00B39584 /* FakeAlamoSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

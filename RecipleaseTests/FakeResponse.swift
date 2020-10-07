@@ -21,27 +21,23 @@ final class FakeResponse {
             }
         }
     }
-    
-    enum data {
-        case good, bad
+
+    enum dataType {
+        case json, image, corrupt
         
-        var data: Data? {
+        var data: Data {
             switch self {
-            case .good:
-                var goodData: Data {
-                    let bundle = Bundle(for: FakeResponse.self)
-                    let url = bundle.url(forResource: "RecipesResult", withExtension: "json")!
-                    return try! Data(contentsOf: url)
-                }
-                return goodData
-            case .bad:
-                var badData: Data {
-                    return "ok".data(using: .utf8)!
-                }
-                return badData
+            case .json:
+                let bundle = Bundle(for: RecipesTests.self)
+                let url = bundle.url(forResource: "RecipesResult", withExtension: "json")!
+                return try! Data(contentsOf: url)
+            case .image:
+                let bundle = Bundle(for: ImagesTest.self)
+                let url = bundle.url(forResource: "ImagesResult", withExtension: "jpg")!
+                return try! Data(contentsOf: url)
+            case.corrupt:
+                return "corrupt".data(using: .utf8)!
             }
         }
     }
-    
-    
 }

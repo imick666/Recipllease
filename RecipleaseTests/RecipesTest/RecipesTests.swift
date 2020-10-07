@@ -8,7 +8,7 @@
 import XCTest
 @testable import Reciplease
 
-class RecipleaseTests: XCTestCase {
+class RecipesTests: XCTestCase {
     
     func testNoResponse() {
         let exp = expectation(description: "wait for queue")
@@ -31,7 +31,7 @@ class RecipleaseTests: XCTestCase {
     func testBadResponse() {
         let exp = expectation(description: "Wait for queue")
         
-        let NetworkService = NetworkServices(session: FakeAlamoSession(response: FakeResponse.response.bad,
+        let NetworkService = NetworkServices(session: FakeAlamoSession(response: .bad,
                                                                        data: nil,
                                                                        error: nil))
         NetworkService.getRecipes(q: []) { (result) in
@@ -67,7 +67,7 @@ class RecipleaseTests: XCTestCase {
     func testDataUndecodable() {
         let exp = expectation(description: "wait for queue")
         
-        let network = NetworkServices(session: FakeAlamoSession(response: .good, data: .bad, error: nil))
+        let network = NetworkServices(session: FakeAlamoSession(response: .good, data: .corrupt, error: nil))
         network.getRecipes(q: []) { (result) in
             guard case .failure(let error) = result else {
                 XCTFail()
@@ -82,7 +82,7 @@ class RecipleaseTests: XCTestCase {
     
     func testGoodData() {
         let exp = expectation(description: "wait for queue")
-        let network = NetworkServices(session: FakeAlamoSession(response: .good, data: .good, error: nil))
+        let network = NetworkServices(session: FakeAlamoSession(response: .good, data: .json, error: nil))
         network.getRecipes(q: []) { (result) in
             guard case .success(let data) = result else {
                 XCTFail()
