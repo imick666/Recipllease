@@ -69,7 +69,25 @@ final class NetworkServices {
         }
     }
     
-    func getImage() {
-        
+    func getImage(url: String, completionHandler: @escaping (Result<Any, NetworkError>) -> Void) {
+        sessions.request(url: url, parameters: nil) { (result) in
+            guard let response = result.response else {
+                completionHandler(.failure(NetworkError.noResponse))
+                return
+            }
+            guard response.statusCode == 200 else {
+                completionHandler(.failure(NetworkError.badResponse))
+                return
+            }
+            guard let data = result.data else {
+                completionHandler(.failure(.noData))
+                return
+            }
+            guard let image = UIImage(data: data) else {
+                completionHandler(.failure(.dataUndecodable))
+                return
+            }
+            completionHandler(.success(image))
+        }
     }
 }
