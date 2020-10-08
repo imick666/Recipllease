@@ -13,7 +13,6 @@ struct RecipesModel: Decodable {
     
     struct HitsModel: Decodable {
         var recipe: RecipeModel
-        var bookmarked: Bool
         
         struct RecipeModel: Decodable {
             var label: String

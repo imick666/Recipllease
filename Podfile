@@ -6,17 +6,18 @@ target 'Reciplease' do
   use_frameworks!
 
   # Pods for Reciplease
-  pod 'Alamofire', '~> 5.2'
+  pod 'Alamofire', '5.2'
+  pod 'SDWebImage', '5.0'
 
   target 'RecipleaseTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'Alamofire', '~> 5.2'
+    pod 'Alamofire', '5.2'
   end
 
   target 'RecipleaseUITests' do
     # Pods for testing
-    pod 'Alamofire', '~> 5.2'
+    pod 'Alamofire', '5.2'
   end
 
 end

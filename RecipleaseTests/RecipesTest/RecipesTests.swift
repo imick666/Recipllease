@@ -89,7 +89,7 @@ class RecipesTests: XCTestCase {
                 return
             }
             exp.fulfill()
-            XCTAssertEqual(data.hits[0].recipe.image, "https://www.edamam.com/web-img/fcc/fccc8cd18dc0310068ebde427e0c1d0c.jpg")
+            XCTAssertEqual(data[0].recipe.image, "https://www.edamam.com/web-img/fcc/fccc8cd18dc0310068ebde427e0c1d0c.jpg")
         }
         wait(for: [exp], timeout: 0.01)
     }

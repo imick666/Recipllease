@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RecipesTableViewCell: UITableViewCell {
 
@@ -27,7 +28,7 @@ class RecipesTableViewCell: UITableViewCell {
         detailView.layer.cornerRadius = 5
         detailView.layer.borderColor = UIColor.white.cgColor
         detailView.layer.borderWidth = 2
-        createGradient()
+        backgroundImage.createGradient(frame: bottomLayer.frame)
     }
     
     let network = NetworkServices()
@@ -46,25 +47,7 @@ class RecipesTableViewCell: UITableViewCell {
         yieldLabel.text = "\(recipe.recipe.yield)"
         timeLabel.text = "\(recipe.recipe.totalTime)"
         nameLabel.text = recipe.recipe.label
-        
-        //Get background image
-        network.getImage(url: recipe.recipe.image) { (result) in
-            switch result {
-            case .failure(_):
-                return
-            case .success(let image):
-                self.backgroundImage.image = image as? UIImage
-            }
-        }
-    }
-    
-    private func createGradient() {
-        //Set Bottom Gradient
-        let gradient = CAGradientLayer()
-        gradient.frame = bottomLayer.frame
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradient.locations = [0, 0.5]
-        backgroundImage.layer.addSublayer(gradient)
+        backgroundImage.sd_setImage(with: URL(string: recipe.recipe.image), completed: nil)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

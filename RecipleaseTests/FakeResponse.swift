@@ -23,17 +23,13 @@ final class FakeResponse {
     }
 
     enum dataType {
-        case json, image, corrupt
+        case json, corrupt
         
         var data: Data {
             switch self {
             case .json:
                 let bundle = Bundle(for: RecipesTests.self)
                 let url = bundle.url(forResource: "RecipesResult", withExtension: "json")!
-                return try! Data(contentsOf: url)
-            case .image:
-                let bundle = Bundle(for: ImagesTest.self)
-                let url = bundle.url(forResource: "ImagesResult", withExtension: "jpg")!
                 return try! Data(contentsOf: url)
             case.corrupt:
                 return "corrupt".data(using: .utf8)!
