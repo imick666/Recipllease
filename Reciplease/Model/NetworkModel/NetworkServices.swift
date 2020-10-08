@@ -35,7 +35,7 @@ final class NetworkServices {
     
     // MARK: - Methodes
     
-    func getRecipes(q: [String], completionHandler: @escaping (Result<RecipesModel, NetworkError>) -> Void) {
+    func getRecipes(q: [String], completionHandler: @escaping (Result<Recipes, NetworkError>) -> Void) {
         
         var query: String {
             var param = ""
@@ -62,7 +62,7 @@ final class NetworkServices {
             }
             do {
                 let data = try JSONDecoder().decode(RecipesModel.self, from: jsonData)
-                completionHandler(.success(data))
+                completionHandler(.success(data.hits))
             } catch {
                 completionHandler(.failure(NetworkError.dataUndecodable))
             }

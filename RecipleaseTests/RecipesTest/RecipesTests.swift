@@ -22,7 +22,7 @@ class RecipesTests: XCTestCase {
                 return
             }
             exp.fulfill()
-            XCTAssertEqual(error, .noResponse)
+            XCTAssertEqual(error.description, "The server is not availible, please try again later")
         }
         
         wait(for: [exp], timeout: 0.01)
@@ -40,7 +40,7 @@ class RecipesTests: XCTestCase {
                 return
             }
             exp.fulfill()
-            XCTAssertEqual(error, NetworkError.badResponse)
+            XCTAssertEqual(error.description, "sorry but the response is not 200")
         }
         
         wait(for: [exp], timeout: 0.01)
@@ -58,7 +58,7 @@ class RecipesTests: XCTestCase {
                 return
             }
             exp.fulfill()
-            XCTAssertEqual(error, .noData)
+            XCTAssertEqual(error.description, "there's no data, sorry")
         }
         
         wait(for: [exp], timeout: 0.01)
@@ -74,7 +74,7 @@ class RecipesTests: XCTestCase {
                 return
             }
             exp.fulfill()
-            XCTAssertEqual(error, .dataUndecodable)
+            XCTAssertEqual(error.description, "Sorry this is not the good data")
         }
         
         wait(for: [exp], timeout: 0.01)

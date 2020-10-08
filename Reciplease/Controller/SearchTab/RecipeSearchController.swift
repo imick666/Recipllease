@@ -58,6 +58,16 @@ class RecipeSearchController: UIViewController {
         addIngredientTextField.addSubview(underline)
     }
 
+    // MARK: - Segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.Segues.RecipesList {
+            guard let destination = segue.destination as? RecipesListTableViewController else {
+                return
+            }
+            destination.dataSource = sender as? Recipes
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func addIngredientButtonTapped(_ sender: Any) {
@@ -75,9 +85,9 @@ class RecipeSearchController: UIViewController {
         networkServices.getRecipes(q: dataSource) { (result) in
             switch result {
             case .failure(let error):
-                print(error)
+                print(error.description)
             case .success(let data):
-                print(data)
+                self.performSegue(withIdentifier: Constants.Segues.RecipesList, sender: data)
             }
         }
     }

@@ -16,7 +16,9 @@ struct RecipesModel: Decodable {
         var bookmarked: Bool
         
         struct RecipeModel: Decodable {
+            var label: String
             var image: String
+            var yield: Double
             var totalTime: Double
             var ingredientLines: [String]
         }
