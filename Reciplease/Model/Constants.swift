@@ -9,6 +9,7 @@ import Foundation
 struct Constants {
     struct Segues {
         static let RecipesList = "RecipesListSegue"
+        static let recipe = "RecipeSegue"
     }
     
     struct Cells {

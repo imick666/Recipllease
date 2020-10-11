@@ -66,7 +66,7 @@ class RecipeSearchController: UIViewController {
             }
             destination.dataSource = sender as? Recipes
         }
-    }
+    }    
     
     // MARK: - Actions
     

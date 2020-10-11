@@ -1,0 +1,61 @@
+//
+//  RecipesListTableViewCell.swift
+//  Reciplease
+//
+//  Created by mickael ruzel on 11/10/2020.
+//
+
+import UIKit
+import SDWebImage
+
+class RecipesListTableViewCell: UITableViewCell {
+    
+    // MARK: - Outlets
+
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var detailView: UIView!
+    @IBOutlet weak var yieldLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var ingredientsLabel: UILabel!
+    
+    // MARK: - Properties
+    
+    var recipe: RecipesModel.HitsModel.RecipeModel? {
+        didSet {
+            setupCell()
+        }
+    }
+    
+    // MARK: - Override
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        detailView.layer.cornerRadius = 5
+        detailView.layer.borderWidth = 2
+        detailView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        let gradientFrame = CGRect(x: self.frame.minX, y: self.frame.maxY / 2, width: self.frame.width, height: self.frame.height / 2)
+        backgroundImage.createGradient(frame: gradientFrame)
+
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    // MARK: - Methodes
+    
+    private func setupCell() {
+        guard let recipe = recipe else {
+            return
+        }
+        backgroundImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
+        nameLabel.text = recipe.label
+        yieldLabel.text = "\(recipe.yield)"
+        timeLabel.text = "\(recipe.totalTime)"
+        
+    }
+    
+}
