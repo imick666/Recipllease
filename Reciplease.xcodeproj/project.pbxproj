@@ -31,6 +31,7 @@
 		E0762609252A11C50012BC41 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0762608252A11C50012BC41 /* UIButton.swift */; };
 		E07BADB5252F05E900DCD0F0 /* RecipesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07BADB4252F05E900DCD0F0 /* RecipesListTableViewController.swift */; };
 		E07BADD4252F097400DCD0F0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07BADD3252F097400DCD0F0 /* Constants.swift */; };
+		E084CB4E25349C0D005AE0FA /* Double + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E084CB4D25349C0D005AE0FA /* Double + String.swift */; };
 		E0B2BD37252C8FDA00B39584 /* FakeAlamoSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B2BD36252C8FDA00B39584 /* FakeAlamoSession.swift */; };
 		E0B2BD3C252C949600B39584 /* FakeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B2BD3B252C949600B39584 /* FakeResponse.swift */; };
 		E0B2BD41252CBE1B00B39584 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B2BD40252CBE1B00B39584 /* NetworkError.swift */; };
@@ -91,6 +92,7 @@
 		E0762608252A11C50012BC41 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		E07BADB4252F05E900DCD0F0 /* RecipesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListTableViewController.swift; sourceTree = "<group>"; };
 		E07BADD3252F097400DCD0F0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E084CB4D25349C0D005AE0FA /* Double + String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + String.swift"; sourceTree = "<group>"; };
 		E0B2BD36252C8FDA00B39584 /* FakeAlamoSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAlamoSession.swift; sourceTree = "<group>"; };
 		E0B2BD3B252C949600B39584 /* FakeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponse.swift; sourceTree = "<group>"; };
 		E0B2BD40252CBE1B00B39584 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			children = (
 				E0762608252A11C50012BC41 /* UIButton.swift */,
 				E0533CB8252F38E900B8FA8B /* View + Gradient.swift */,
+				E084CB4D25349C0D005AE0FA /* Double + String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				E07BADB5252F05E900DCD0F0 /* RecipesListTableViewController.swift in Sources */,
 				E0FB8EC32533AEE4006DCE51 /* RecipeViewController.swift in Sources */,
 				E0615B3D252B1ED3003AC191 /* APIConfig.swift in Sources */,
+				E084CB4E25349C0D005AE0FA /* Double + String.swift in Sources */,
 				E0B2BD41252CBE1B00B39584 /* NetworkError.swift in Sources */,
 				E0533CB9252F38E900B8FA8B /* View + Gradient.swift in Sources */,
 			);

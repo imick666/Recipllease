@@ -53,8 +53,8 @@ class RecipesListTableViewCell: UITableViewCell {
         }
         backgroundImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
         nameLabel.text = recipe.label
-        yieldLabel.text = "\(recipe.yield)"
-        timeLabel.text = "\(recipe.totalTime)"
+        yieldLabel.text = "\(Int(recipe.yield))"
+        timeLabel.text = recipe.totalTime.hhmmString
         
     }
     

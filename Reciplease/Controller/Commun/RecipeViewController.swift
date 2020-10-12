@@ -42,8 +42,8 @@ class RecipeViewController: UIViewController {
         recipeImage.sd_setImage(with: URL(string: recipe.recipe.image), completed: nil)
         recipeImage.createGradient(frame: CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2))
         NameLabel.text = recipe.recipe.label
-        yieldLabel.text = "\(recipe.recipe.yield)"
-        timeLabel.text = "\(recipe.recipe.totalTime)"
+        yieldLabel.text = "\(Int(recipe.recipe.yield))"
+        timeLabel.text = recipe.recipe.totalTime.hhmmString
         
         detailView.layer.cornerRadius = 5
         detailView.layer.borderWidth = 2
