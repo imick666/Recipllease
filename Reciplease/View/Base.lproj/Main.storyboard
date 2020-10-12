@@ -244,11 +244,42 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Np4-00-Dn3">
-                                <rect key="frame" x="8" y="203" width="398" height="31"/>
+                                <rect key="frame" x="8" y="203.5" width="398" height="30.5"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-fE-jFS">
+                                <rect key="frame" x="316" y="8" width="90" height="57"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2o2-cd-vbD">
+                                        <rect key="frame" x="8" y="8" width="74" height="41"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yield Lable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLd-Bv-lPR">
+                                                <rect key="frame" x="0.0" y="0.0" width="74" height="16.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9D8-ff-E4B">
+                                                <rect key="frame" x="0.0" y="24.5" width="74" height="16.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2145212293" green="0.20070800189999999" blue="0.1960143745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="2o2-cd-vbD" firstAttribute="leading" secondItem="hjC-fE-jFS" secondAttribute="leading" constant="8" id="D9z-IN-Ma7"/>
+                                    <constraint firstAttribute="bottom" secondItem="2o2-cd-vbD" secondAttribute="bottom" constant="8" id="Eck-ji-rXp"/>
+                                    <constraint firstAttribute="height" constant="57" id="ppy-AM-pdL"/>
+                                    <constraint firstItem="2o2-cd-vbD" firstAttribute="top" secondItem="hjC-fE-jFS" secondAttribute="top" constant="8" id="pvH-Hs-8Af"/>
+                                    <constraint firstAttribute="trailing" secondItem="2o2-cd-vbD" secondAttribute="trailing" constant="8" id="rRV-x1-GhW"/>
+                                    <constraint firstAttribute="width" constant="90" id="uHm-ig-A6r"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3C2-Pv-YBS"/>
                         <color key="backgroundColor" red="0.2145212293" green="0.20070800189999999" blue="0.1960143745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -260,11 +291,13 @@
                             <constraint firstItem="jni-RT-0uB" firstAttribute="trailing" secondItem="3C2-Pv-YBS" secondAttribute="trailing" id="PxG-7o-oeQ"/>
                             <constraint firstItem="jni-RT-0uB" firstAttribute="top" secondItem="Np4-00-Dn3" secondAttribute="bottom" constant="16" id="QGN-WZ-sBn"/>
                             <constraint firstItem="jni-RT-0uB" firstAttribute="leading" secondItem="3C2-Pv-YBS" secondAttribute="leading" id="VQA-bz-Uku"/>
+                            <constraint firstItem="3C2-Pv-YBS" firstAttribute="trailing" secondItem="hjC-fE-jFS" secondAttribute="trailing" constant="8" id="WWv-97-sjS"/>
                             <constraint firstItem="ro2-SD-oxp" firstAttribute="leading" secondItem="3C2-Pv-YBS" secondAttribute="leading" id="Z4q-63-dQq"/>
                             <constraint firstItem="jni-RT-0uB" firstAttribute="top" secondItem="ro2-SD-oxp" secondAttribute="bottom" id="dP5-vL-8bU"/>
                             <constraint firstItem="5e6-ia-Sp1" firstAttribute="leading" secondItem="3C2-Pv-YBS" secondAttribute="leading" constant="30" id="g2p-wj-tfe"/>
                             <constraint firstItem="3C2-Pv-YBS" firstAttribute="trailing" secondItem="5e6-ia-Sp1" secondAttribute="trailing" constant="30" id="gqW-WY-2ti"/>
                             <constraint firstItem="3C2-Pv-YBS" firstAttribute="bottom" secondItem="5e6-ia-Sp1" secondAttribute="bottom" constant="30" id="pKX-en-c1Y"/>
+                            <constraint firstItem="hjC-fE-jFS" firstAttribute="top" secondItem="3C2-Pv-YBS" secondAttribute="top" constant="8" id="qSs-hO-zNQ"/>
                             <constraint firstItem="ro2-SD-oxp" firstAttribute="top" secondItem="3C2-Pv-YBS" secondAttribute="top" id="sa6-R0-CL3"/>
                         </constraints>
                     </view>
@@ -277,8 +310,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="NameLabel" destination="Np4-00-Dn3" id="mpu-AN-pGP"/>
+                        <outlet property="detailView" destination="hjC-fE-jFS" id="Rmv-7D-puo"/>
                         <outlet property="recipeImage" destination="ro2-SD-oxp" id="9qw-2d-CWq"/>
                         <outlet property="tableView" destination="jni-RT-0uB" id="hop-Sg-6UO"/>
+                        <outlet property="timeLabel" destination="9D8-ff-E4B" id="IE5-CK-d03"/>
+                        <outlet property="yieldLabel" destination="VLd-Bv-lPR" id="YGZ-j8-e9B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QIR-30-2W8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

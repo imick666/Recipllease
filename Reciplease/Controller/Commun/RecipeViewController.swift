@@ -14,6 +14,9 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var NameLabel: UILabel!
     
+    @IBOutlet weak var detailView: UIView!
+    @IBOutlet weak var yieldLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     // MARK: - Properties
     
@@ -26,22 +29,33 @@ class RecipeViewController: UIViewController {
         
         setupTableView()
 
-        guard let recipe = recipe else {
-            return
-        }
-        recipeImage.sd_setImage(with: URL(string: recipe.recipe.image), completed: nil)
-        recipeImage.createGradient(frame: CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2))
-        NameLabel.text = recipe.recipe.label
+        setupView()
     }
     
     // MARK: - Methodes
+    
+    private func setupView() {
+        guard let recipe = recipe else {
+            return
+        }
+        
+        recipeImage.sd_setImage(with: URL(string: recipe.recipe.image), completed: nil)
+        recipeImage.createGradient(frame: CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2))
+        NameLabel.text = recipe.recipe.label
+        yieldLabel.text = "\(recipe.recipe.yield)"
+        timeLabel.text = "\(recipe.recipe.totalTime)"
+        
+        detailView.layer.cornerRadius = 5
+        detailView.layer.borderWidth = 2
+        detailView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+    }
     
     private func setupTableView() {
         // Create TableView Header
         var headerView: UIView {
             let label = UILabel(frame: CGRect(x: 8, y: 0, width: 150, height: 44))
             label.text = "Ingredients"
-            label.font = UIFont(name: "Chalkduster", size: 20)
+            label.font = UIFont(name: "Chalkduster", size: 22)
             label.textColor = .white
             label.backgroundColor = .clear
             
@@ -84,7 +98,7 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.backgroundColor = .clear
         cell.textLabel?.textColor = .white
-        cell.textLabel?.font = UIFont(name: "Chalkduster", size: 15)
+        cell.textLabel?.font = UIFont(name: "Chalkduster", size: 17)
         cell.textLabel?.text = "- \(ingredients[indexPath.row])"
         
         return cell
