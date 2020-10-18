@@ -62,7 +62,16 @@ final class NetworkServices {
             }
             do {
                 let data = try JSONDecoder().decode(RecipesModel.self, from: jsonData)
-                completionHandler(.success(data.hits))
+                
+                var recipes: [Recipe] {
+                    var result = [Recipe]()
+                    for recipe in data.hits {
+                        result.append(recipe.recipe)
+                    }
+                    return result
+                }
+                
+                completionHandler(.success(recipes))
             } catch {
                 completionHandler(.failure(NetworkError.dataUndecodable))
             }

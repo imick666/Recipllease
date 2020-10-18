@@ -7,5 +7,5 @@
 
 import Foundation
 
-typealias Recipe = RecipesModel.HitsModel
-typealias Recipes = [RecipesModel.HitsModel]
+typealias Recipe = RecipesModel.HitsModel.RecipeModel
+typealias Recipes = [RecipesModel.HitsModel.RecipeModel]

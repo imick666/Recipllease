@@ -34,7 +34,7 @@ class RecipesListTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        cell.recipe = dataSource[indexPath.row].recipe
+        cell.recipe = dataSource[indexPath.row]
 
         return cell
     }

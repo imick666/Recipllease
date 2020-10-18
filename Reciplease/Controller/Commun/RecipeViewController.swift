@@ -39,11 +39,11 @@ class RecipeViewController: UIViewController {
             return
         }
         
-        recipeImage.sd_setImage(with: URL(string: recipe.recipe.image), completed: nil)
+        recipeImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
         recipeImage.createGradient(frame: CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2))
-        NameLabel.text = recipe.recipe.label
-        yieldLabel.text = "\(Int(recipe.recipe.yield))"
-        timeLabel.text = recipe.recipe.totalTime.hhmmString
+        NameLabel.text = recipe.label
+        yieldLabel.text = "\(Int(recipe.yield))"
+        timeLabel.text = recipe.totalTime.hhmmString
         
         detailView.layer.cornerRadius = 5
         detailView.layer.borderWidth = 2
@@ -83,7 +83,7 @@ class RecipeViewController: UIViewController {
 
 extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let ingredients = recipe?.recipe.ingredientLines else {
+        guard let ingredients = recipe?.ingredientLines else {
             return 0
         }
         return ingredients.count
@@ -92,7 +92,7 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         
-        guard let ingredients = recipe?.recipe.ingredientLines else {
+        guard let ingredients = recipe?.ingredientLines else {
             return UITableViewCell()
         }
         

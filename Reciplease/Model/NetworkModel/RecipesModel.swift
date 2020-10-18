@@ -16,6 +16,7 @@ struct RecipesModel: Decodable {
         
         struct RecipeModel: Decodable {
             var label: String
+            var url: String
             var image: String
             var yield: Double
             var totalTime: Double

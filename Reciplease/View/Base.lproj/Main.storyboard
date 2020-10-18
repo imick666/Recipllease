@@ -23,7 +23,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CYu-o3-14B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1109" y="552"/>
+            <point key="canvasLocation" x="629" y="552"/>
         </scene>
         <!--Reciplease-->
         <scene sceneID="dw7-9x-TgI">
@@ -205,7 +205,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ex5-Wl-Xb9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1556.521739130435" y="-178.125"/>
+            <point key="canvasLocation" x="1635" y="-178"/>
         </scene>
         <!--Recipe View Controller-->
         <scene sceneID="aUh-81-nbC">
