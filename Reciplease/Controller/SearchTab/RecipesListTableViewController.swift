@@ -6,26 +6,33 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RecipesListTableViewController: UITableViewController {
 
+    // MARK: - Properties
+    
     var dataSource: Recipes! {
         didSet {
             tableView.reloadData()
         }
     }
     
+    // MARK: - View LifeCircle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib(nibName: "RecipesListTableViewCell", bundle: nil)
+        let nib = UINib(nibName: Constants.nibName.recipeCell , bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: Constants.Cells.recipeCell)
-        
     }
 
+    // MARK: - Methodes
+    
+    
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return dataSource?.count ?? 0
     }
 
@@ -44,13 +51,14 @@ class RecipesListTableViewController: UITableViewController {
     }
     
     // MARK: - TableView Delegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         performSegue(withIdentifier: Constants.Segues.recipe, sender: dataSource?[indexPath.row])
     }
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segues.recipe {
             if let destination = segue.destination as? RecipeViewController {
@@ -58,5 +66,4 @@ class RecipesListTableViewController: UITableViewController {
             }
         }
     }
-
 }

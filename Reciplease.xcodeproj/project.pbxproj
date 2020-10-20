@@ -27,8 +27,10 @@
 		E0615B42252B1F9E003AC191 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0615B41252B1F9E003AC191 /* NetworkServices.swift */; };
 		E0615B6B252B33E8003AC191 /* RecipesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0615B6A252B33E8003AC191 /* RecipesModel.swift */; };
 		E06881BE252B5132009C1230 /* RecipesResult.json in Resources */ = {isa = PBXBuildFile; fileRef = E06881BD252B5132009C1230 /* RecipesResult.json */; };
+		E0698C75253C42CB00F42CBB /* FavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0698C74253C42CB00F42CBB /* FavoritesTableViewController.swift */; };
+		E0698C85253EE10500F42CBB /* UIViewController+AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0698C84253EE10500F42CBB /* UIViewController+AlertController.swift */; };
+		E0698C8D253F06F800F42CBB /* String+Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0698C8C253F06F800F42CBB /* String+Predicate.swift */; };
 		E07625FE252A02A30012BC41 /* RecipeSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07625FD252A02A30012BC41 /* RecipeSearchController.swift */; };
-		E0762603252A02BC0012BC41 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0762602252A02BC0012BC41 /* FavoriteController.swift */; };
 		E0762609252A11C50012BC41 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0762608252A11C50012BC41 /* UIButton.swift */; };
 		E07BADB5252F05E900DCD0F0 /* RecipesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07BADB4252F05E900DCD0F0 /* RecipesListTableViewController.swift */; };
 		E07BADD4252F097400DCD0F0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07BADD3252F097400DCD0F0 /* Constants.swift */; };
@@ -89,8 +91,10 @@
 		E0615B41252B1F9E003AC191 /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 		E0615B6A252B33E8003AC191 /* RecipesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesModel.swift; sourceTree = "<group>"; };
 		E06881BD252B5132009C1230 /* RecipesResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecipesResult.json; sourceTree = "<group>"; };
+		E0698C74253C42CB00F42CBB /* FavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewController.swift; sourceTree = "<group>"; };
+		E0698C84253EE10500F42CBB /* UIViewController+AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AlertController.swift"; sourceTree = "<group>"; };
+		E0698C8C253F06F800F42CBB /* String+Predicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Predicate.swift"; sourceTree = "<group>"; };
 		E07625FD252A02A30012BC41 /* RecipeSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchController.swift; sourceTree = "<group>"; };
-		E0762602252A02BC0012BC41 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		E0762608252A11C50012BC41 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		E07BADB4252F05E900DCD0F0 /* RecipesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListTableViewController.swift; sourceTree = "<group>"; };
 		E07BADD3252F097400DCD0F0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -225,8 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				E0FB8EC12533AEC6006DCE51 /* Commun */,
-				E0762602252A02BC0012BC41 /* FavoriteController.swift */,
 				E0533CAC252F10B800B8FA8B /* SearchTab */,
+				E0698C74253C42CB00F42CBB /* FavoritesTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -265,6 +269,8 @@
 				E0762608252A11C50012BC41 /* UIButton.swift */,
 				E0533CB8252F38E900B8FA8B /* View+Gradient.swift */,
 				E084CB4D25349C0D005AE0FA /* Double+String.swift */,
+				E0698C84253EE10500F42CBB /* UIViewController+AlertController.swift */,
+				E0698C8C253F06F800F42CBB /* String+Predicate.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -585,16 +591,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0762603252A02BC0012BC41 /* FavoriteController.swift in Sources */,
 				E0615B6B252B33E8003AC191 /* RecipesModel.swift in Sources */,
 				E0533CA8252F0F6B00B8FA8B /* TypeAlias.swift in Sources */,
 				E0FB8EB92533A13E006DCE51 /* RecipesListTableViewCell.swift in Sources */,
+				E0698C75253C42CB00F42CBB /* FavoritesTableViewController.swift in Sources */,
 				E05315A325349556007A5CE9 /* CoreDataManager.swift in Sources */,
 				E0316A602529F95D00C33449 /* Reciplease.xcdatamodeld in Sources */,
 				E07625FE252A02A30012BC41 /* RecipeSearchController.swift in Sources */,
 				E0316A562529F95D00C33449 /* AppDelegate.swift in Sources */,
+				E0698C8D253F06F800F42CBB /* String+Predicate.swift in Sources */,
 				E0316A582529F95D00C33449 /* SceneDelegate.swift in Sources */,
 				E0762609252A11C50012BC41 /* UIButton.swift in Sources */,
+				E0698C85253EE10500F42CBB /* UIViewController+AlertController.swift in Sources */,
 				E07BADD4252F097400DCD0F0 /* Constants.swift in Sources */,
 				E0615B42252B1F9E003AC191 /* NetworkServices.swift in Sources */,
 				E07BADB5252F05E900DCD0F0 /* RecipesListTableViewController.swift in Sources */,
@@ -712,7 +720,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -767,7 +775,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -786,7 +794,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6M3YC3LQG;
 				INFOPLIST_FILE = Reciplease/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -807,7 +815,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6M3YC3LQG;
 				INFOPLIST_FILE = Reciplease/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

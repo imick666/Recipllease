@@ -89,7 +89,7 @@ class RecipesTests: XCTestCase {
                 return
             }
             exp.fulfill()
-            XCTAssertEqual(data[0].image, "https://www.edamam.com/web-img/fcc/fccc8cd18dc0310068ebde427e0c1d0c.jpg")
+            XCTAssertEqual(data[0].label, "Côte de Boeuf with Caramelized Shallots")
         }
         wait(for: [exp], timeout: 0.01)
     }

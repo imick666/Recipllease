@@ -7,13 +7,13 @@
 
 import Foundation
 import CoreData
+import SDWebImage
 
 final class CoreDataManager {
-    private let context: NSManagedObjectContext
     
-    init(context: NSManagedObjectContext = AppDelegate().persistentContainer.viewContext) {
-        self.context = context
-    }
+    // MARK: - Properties
+    
+    private let context: NSManagedObjectContext
     
     var allRecipes: [StoredRecipe] {
         let request: NSFetchRequest<StoredRecipe> = StoredRecipe.fetchRequest()
@@ -24,10 +24,19 @@ final class CoreDataManager {
         guard let result = try? context.fetch(request) else {
             return []
         }
+        
         return result
     }
     
-    func storeRecipe(_ recipe: Recipe) {
+    // MARK: - Init
+    
+    init(context: NSManagedObjectContext = AppDelegate().persistentContainer.viewContext) {
+        self.context = context
+    }
+    
+    // MARK: - Methodes
+    
+    func storeRecipe(_ recipe: Recipe, image: Data){
         let newRecipe = StoredRecipe(context: context)
         newRecipe.name = recipe.label
         newRecipe.ingredients = recipe.ingredientLines
@@ -35,9 +44,11 @@ final class CoreDataManager {
         newRecipe.yield = recipe.yield
         newRecipe.addedDate = Date()
         newRecipe.url = recipe.url
+        newRecipe.image = image
         
         saveContext()
     }
+    
     
     func deleteRecipe(_ recipe: StoredRecipe) {
         context.delete(recipe)
@@ -52,5 +63,4 @@ final class CoreDataManager {
             return
         }
     }
-    
 }

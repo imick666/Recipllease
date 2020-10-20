@@ -10,6 +10,7 @@ import UIKit
 class RecipeSearchController: UIViewController {
     
     // MARK: - Outlets
+    
     @IBOutlet weak var addIngredientTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addIngredientButton: UIButton!
@@ -17,6 +18,7 @@ class RecipeSearchController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     
     // MARK: - Properties
+    
     private let networkServices = NetworkServices()
     
     var dataSource = [String]() {
@@ -34,6 +36,7 @@ class RecipeSearchController: UIViewController {
         
         // Addd footer for tableview
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 84))
+        tableView.separatorStyle = .none
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,6 +62,7 @@ class RecipeSearchController: UIViewController {
     }
 
     // MARK: - Segues
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segues.RecipesList {
             guard let destination = segue.destination as? RecipesListTableViewController else {
@@ -71,9 +75,15 @@ class RecipeSearchController: UIViewController {
     // MARK: - Actions
     
     @IBAction func addIngredientButtonTapped(_ sender: Any) {
-        guard let ingredient = addIngredientTextField.text else {
+        guard let ingredient = addIngredientTextField.text?.lowercased() else {
             return
         }
+        guard ingredient.ingredientNameIsCorrect else {
+            self.showAlert(for: self, title: "Error", message: "Please enter a correct ingredient name")
+            addIngredientTextField.text = nil
+            return
+        }
+        
         dataSource.append(ingredient)
         addIngredientTextField.text = nil
     }
@@ -85,7 +95,7 @@ class RecipeSearchController: UIViewController {
         networkServices.getRecipes(q: dataSource) { (result) in
             switch result {
             case .failure(let error):
-                print(error.description)
+                self.showAlert(for: self, title: "Error", message: error.description)
             case .success(let data):
                 self.performSegue(withIdentifier: Constants.Segues.RecipesList, sender: data)
             }
@@ -98,10 +108,8 @@ class RecipeSearchController: UIViewController {
 extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - TableView DataSource
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard dataSource.count != 0 else {
-            return 1
-        }
         return dataSource.count
     }
     
@@ -110,16 +118,27 @@ extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.font = UIFont(name: "Chalkduster", size: 18)
         cell.textLabel?.textColor = .white
         cell.backgroundColor = .clear
-        
-        if dataSource.count == 0 {
-            cell.textLabel?.text = "Please, add some ingredients"
-            cell.textLabel?.textAlignment = .center
-        } else {
-            cell.textLabel?.text = "- " + dataSource[indexPath.row]
-            cell.textLabel?.textAlignment = .left
-        }
+
+        cell.textLabel?.text = "- " + dataSource[indexPath.row].capitalized
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please, add some ingredients"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Chalkduster", size: 18)
+        label.textColor = .white
+        
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard dataSource.count != 0 else {
+            return 100
+        }
+        return 0
     }
     
     // MARK: - TableView Delegate

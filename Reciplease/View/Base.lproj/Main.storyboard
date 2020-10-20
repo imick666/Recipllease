@@ -5,26 +5,9 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorite Controller-->
-        <scene sceneID="boI-0d-5Ut">
-            <objects>
-                <viewController id="bOy-Yv-bL9" customClass="FavoriteController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fqn-KZ-yKT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="bjV-Ul-M4o"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="yIY-CZ-46A"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CYu-o3-14B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="629" y="552"/>
-        </scene>
         <!--Reciplease-->
         <scene sceneID="dw7-9x-TgI">
             <objects>
@@ -369,24 +352,50 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a0y-B6-Tvb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorite" id="VMr-85-UQp"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gey-LD-kcS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="gey-LD-kcS">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.2145212293" green="0.20070800189999999" blue="0.1960143745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bOy-Yv-bL9" kind="relationship" relationship="rootViewController" id="O1b-I9-ZtF"/>
+                        <segue destination="QfL-9I-8AF" kind="relationship" relationship="rootViewController" id="UOY-PU-nlt"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDB-MG-kQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-281.15942028985512" y="552.45535714285711"/>
         </scene>
+        <!--Favorites-->
+        <scene sceneID="CGM-vR-lgt">
+            <objects>
+                <tableViewController id="QfL-9I-8AF" customClass="FavoritesTableViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sa8-0I-zqj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.2145212293" green="0.20070800189999999" blue="0.1960143745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="QfL-9I-8AF" id="I3G-PF-Fac"/>
+                            <outlet property="delegate" destination="QfL-9I-8AF" id="92I-BF-g7r"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favorites" id="Z2y-TC-VGy"/>
+                    <connections>
+                        <segue destination="Ktn-Wb-G6z" kind="show" identifier="FavRecipeSegue" id="cQw-tn-4Xr"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wUH-im-pit" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1125" y="552"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="cQw-tn-4Xr"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="ImagesResult1" width="300" height="300"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

@@ -21,9 +21,15 @@ class RecipesListTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    var recipe: RecipesModel.HitsModel.RecipeModel? {
+    var recipe: Recipe? {
         didSet {
             setupCell()
+        }
+    }
+    
+    var storedRecipe: StoredRecipe? {
+        didSet {
+            setupCellFromStored()
         }
     }
     
@@ -34,9 +40,8 @@ class RecipesListTableViewCell: UITableViewCell {
         detailView.layer.cornerRadius = 5
         detailView.layer.borderWidth = 2
         detailView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        let gradientFrame = CGRect(x: self.frame.minX, y: self.frame.maxY / 2, width: self.frame.width, height: self.frame.height / 2)
+        let gradientFrame = CGRect(x: self.frame.minX, y: self.frame.maxY / 2, width: self.bounds.width, height: self.bounds.height / 2)
         backgroundImage.createGradient(frame: gradientFrame)
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,7 +60,16 @@ class RecipesListTableViewCell: UITableViewCell {
         nameLabel.text = recipe.label
         yieldLabel.text = "\(Int(recipe.yield))"
         timeLabel.text = recipe.totalTime.hhmmString
-        
+    }
+    
+    private func setupCellFromStored() {
+        guard let recipe = storedRecipe else {
+            return
+        }
+        backgroundImage.image = UIImage(data: recipe.image!)
+        nameLabel.text = recipe.name
+        yieldLabel.text = "\(Int(recipe.yield))"
+        timeLabel.text = recipe.totalTime.hhmmString
     }
     
 }

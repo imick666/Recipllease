@@ -2,14 +2,15 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="StoredRecipe" representedClassName=".StoredRecipe" syncable="YES" codeGenerationType="class">
         <attribute name="addedDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="bookMarked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="image" attributeType="Binary"/>
         <attribute name="ingredients" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="totalTime" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="totalTime" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="url" attributeType="String"/>
-        <attribute name="yield" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="yield" attributeType="Double" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="StoredRecipe" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="StoredRecipe" positionX="-63" positionY="-18" width="128" height="163"/>
     </elements>
 </model>

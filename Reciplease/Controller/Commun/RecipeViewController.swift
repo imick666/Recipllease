@@ -20,7 +20,11 @@ class RecipeViewController: UIViewController {
     
     // MARK: - Properties
     
+    let coreData = CoreDataManager()
+    
     var recipe: Recipe?
+    
+    var storedRecipe: StoredRecipe?
     
     // MARK: - ViewLife Cycle
 
@@ -35,16 +39,22 @@ class RecipeViewController: UIViewController {
     // MARK: - Methodes
     
     private func setupView() {
-        guard let recipe = recipe else {
-            return
+        if let recipe = recipe {
+            recipeImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
+            
+            NameLabel.text = recipe.label
+            yieldLabel.text = "\(Int(recipe.yield))"
+            timeLabel.text = recipe.totalTime.hhmmString
         }
         
-        recipeImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
-        recipeImage.createGradient(frame: CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2))
-        NameLabel.text = recipe.label
-        yieldLabel.text = "\(Int(recipe.yield))"
-        timeLabel.text = recipe.totalTime.hhmmString
+        if let recipe = storedRecipe {
+            recipeImage.image = UIImage(data: recipe.image!)
+            NameLabel.text = recipe.name
+            yieldLabel.text = "\(Int(recipe.yield))"
+            timeLabel.text = recipe.totalTime.hhmmString
+        }
         
+        recipeImage.createGradient(frame: CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2))
         detailView.layer.cornerRadius = 5
         detailView.layer.borderWidth = 2
         detailView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -77,29 +87,40 @@ class RecipeViewController: UIViewController {
     }
     
     @IBAction func addFavoriteButtonTapped(_ sender: Any) {
+        guard let recipe = recipe, let image = recipeImage.image?.sd_imageData() else {
+            return
+        }
+        
+        coreData.storeRecipe(recipe, image: image)
     }
     
 }
 
 extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let ingredients = recipe?.ingredientLines else {
+        if let ingredients = recipe?.ingredientLines {
+            return ingredients.count
+        } else if let ingredients = storedRecipe?.ingredients {
+            return ingredients.count
+        } else {
             return 0
         }
-        return ingredients.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         
-        guard let ingredients = recipe?.ingredientLines else {
-            return UITableViewCell()
+        if let ingredients = recipe?.ingredientLines {
+            cell.textLabel?.text = "- \(ingredients[indexPath.row])"
+        }
+        if let ingredients = storedRecipe?.ingredients {
+            cell.textLabel?.text = "- \(ingredients[indexPath.row])"
         }
         
         cell.backgroundColor = .clear
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = UIFont(name: "Chalkduster", size: 17)
-        cell.textLabel?.text = "- \(ingredients[indexPath.row])"
+        
         
         return cell
     }

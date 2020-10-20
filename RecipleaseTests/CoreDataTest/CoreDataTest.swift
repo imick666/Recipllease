@@ -33,7 +33,7 @@ class CoreDataTest: XCTestCase {
                 XCTFail()
                 return
             }
-            self.cdStack?.storeRecipe(data[0])
+            self.cdStack?.storeRecipe(data[0],image: "ok".data(using: .utf8)!)
         }
         
         XCTAssertEqual(cdStack?.allRecipes.count, 1)
@@ -51,7 +51,7 @@ class CoreDataTest: XCTestCase {
             }
             
             //Store recipe
-            self.cdStack?.storeRecipe(data[0])
+            self.cdStack?.storeRecipe(data[0],image: "ok".data(using: .utf8)!)
         }
         
         //Get recipes from CoreData
