@@ -47,9 +47,9 @@ class RecipeSearchController: UIViewController {
     // MARK: - Methodes
     
     private func setupButton() {
-        addIngredientButton.rounded()
-        clearButton.rounded()
-        searchButton.rounded()
+        addIngredientButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Add", textColor: .white)
+        clearButton.round(background: #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1), title: "Clear", textColor: .white)
+        searchButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Search for recipes", textColor: .white)
     }
     
     private func setupTextField() {

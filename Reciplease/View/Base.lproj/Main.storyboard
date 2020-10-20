@@ -294,6 +294,7 @@
                     <connections>
                         <outlet property="NameLabel" destination="Np4-00-Dn3" id="mpu-AN-pGP"/>
                         <outlet property="detailView" destination="hjC-fE-jFS" id="Rmv-7D-puo"/>
+                        <outlet property="getDirectionsButton" destination="5e6-ia-Sp1" id="9qc-xM-ZKG"/>
                         <outlet property="recipeImage" destination="ro2-SD-oxp" id="9qw-2d-CWq"/>
                         <outlet property="tableView" destination="jni-RT-0uB" id="hop-Sg-6UO"/>
                         <outlet property="timeLabel" destination="9D8-ff-E4B" id="IE5-CK-d03"/>

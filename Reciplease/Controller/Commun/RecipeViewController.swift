@@ -18,6 +18,8 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var yieldLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    @IBOutlet weak var getDirectionsButton: UIButton!
+    
     // MARK: - Properties
     
     let coreData = CoreDataManager()
@@ -34,6 +36,8 @@ class RecipeViewController: UIViewController {
         setupTableView()
 
         setupView()
+        getDirectionsButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Get directions", textColor: .white)
+        
     }
     
     // MARK: - Methodes

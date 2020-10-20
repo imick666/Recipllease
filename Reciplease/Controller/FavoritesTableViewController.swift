@@ -96,6 +96,8 @@ class FavoritesTableViewController: UITableViewController {
         performSegue(withIdentifier: Constants.Segues.favRecipeSegue, sender: recipe)
     }
     
+    // MARK: - Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segues.favRecipeSegue {
             guard let destination = segue.destination as? RecipeViewController else {

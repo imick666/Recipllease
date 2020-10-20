@@ -9,7 +9,11 @@ import Foundation
 import UIKit
 
 extension UIButton {
-    func rounded() {
+    
+    func round(background color: UIColor, title: String?, textColor: UIColor) {
         self.layer.cornerRadius = 5
+        self.backgroundColor = color
+        self.titleLabel?.text = title
+        self.titleLabel?.textColor = textColor
     }
 }
