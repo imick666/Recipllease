@@ -24,8 +24,9 @@ class RecipesListTableViewController: UITableViewController {
         super.viewDidLoad()
         let nib = UINib(nibName: Constants.nibName.recipeCell , bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: Constants.Cells.recipeCell)
+        tableView.separatorStyle = .none
     }
-
+    
     // MARK: - Methodes
     
     

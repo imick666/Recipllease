@@ -60,6 +60,7 @@ class RecipesListTableViewCell: UITableViewCell {
         nameLabel.text = recipe.label
         yieldLabel.text = "\(Int(recipe.yield))"
         timeLabel.text = recipe.totalTime.hhmmString
+        ingredientsLabel.text = recipe.ingredientLines.joined(separator: ", ")
     }
     
     private func setupCellFromStored() {
