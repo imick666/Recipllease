@@ -88,6 +88,17 @@ class RecipeViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func getDirectionsButtonTapped(_ sender: Any) {
+        if let recipeUrl = recipe?.url {
+            guard let url = URL(string: recipeUrl) else {
+                return
+            }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else if let recipeUrl = storedRecipe?.url {
+            guard let url = URL(string: recipeUrl) else {
+                return
+            }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
     @IBAction func addFavoriteButtonTapped(_ sender: Any) {
