@@ -27,7 +27,7 @@ class RecipeViewController: UIViewController {
     
     var recipe: Recipe?
     private var recipeIsStored: Bool {
-        return coreData.allRecipesAsStored.contains(where: {$0.name == recipe?.label})
+        return coreData.allRecipes.contains(where: {$0.label == recipe?.label})
     }
     
     // MARK: - ViewLife Cycle
@@ -38,8 +38,12 @@ class RecipeViewController: UIViewController {
         setupTableView()
 
         setupView()
-        setupFavoriteTint()
         getDirectionsButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Get directions", textColor: .white)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupFavoriteTint()
     }
     
     // MARK: - Methodes
@@ -74,12 +78,8 @@ class RecipeViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func getDirectionsButtonTapped(_ sender: Any) {
-        if let recipeUrl = recipe?.url {
-            guard let url = URL(string: recipeUrl) else {
-                return
-            }
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
+        guard let recipe = recipe, let url = URL(string: recipe.url) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
     @IBAction func addFavoriteButtonTapped(_ sender: Any) {
@@ -88,9 +88,7 @@ class RecipeViewController: UIViewController {
             coreData.deleteRecipe(recipe)
             navigationController?.popViewController(animated: true)
         } else {
-            guard let image = recipeImage.image?.sd_imageData() else {
-                return
-            }
+            guard let image = recipeImage.image?.sd_imageData() else { return }
             coreData.storeRecipe(recipe, image: image)
         }
         setupFavoriteTint()
@@ -99,7 +97,7 @@ class RecipeViewController: UIViewController {
 
 extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let recipe = recipe else { return 0}
+        guard let recipe = recipe else { return 0 }
         return recipe.ingredientLines.count
     }
     

@@ -50,7 +50,6 @@ class RecipesListTableViewController: UITableViewController {
     // MARK: - TableView Delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         performSegue(withIdentifier: Constants.Segues.recipe, sender: dataSource?[indexPath.row])
     }
     

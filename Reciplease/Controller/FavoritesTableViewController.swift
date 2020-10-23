@@ -20,6 +20,7 @@ class FavoritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: Constants.nibName.recipeCell, bundle: nil), forCellReuseIdentifier: Constants.Cells.recipeCell)
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +39,6 @@ class FavoritesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return dataSource?.count ?? 0
     }
     
@@ -68,19 +68,13 @@ class FavoritesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard dataSource?.count != 0 else {
-            return 200
-        }
-        
-        return 0
+        return dataSource?.count != 0 ? 0 : 200
     }
 
     // MARK: - TableView Delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let recipe = dataSource?[indexPath.row] else {
-            return
-        }
+        guard let recipe = dataSource?[indexPath.row] else { return }
         
         performSegue(withIdentifier: Constants.Segues.favRecipeSegue, sender: recipe)
     }
@@ -89,11 +83,8 @@ class FavoritesTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segues.favRecipeSegue {
-            guard let destination = segue.destination as? RecipeViewController else {
-                return
-            }
+            guard let destination = segue.destination as? RecipeViewController else { return }
             destination.recipe = sender as? Recipe
-            
         }
     }
 }

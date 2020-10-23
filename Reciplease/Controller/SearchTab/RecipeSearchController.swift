@@ -64,7 +64,7 @@ class RecipeSearchController: UIViewController {
         addIngredientTextField.addSubview(underline)
     }
 
-    // MARK: - Segues
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.Segues.RecipesList {
@@ -78,10 +78,8 @@ class RecipeSearchController: UIViewController {
     // MARK: - Actions
     
     @IBAction func addIngredientButtonTapped(_ sender: Any) {
-        guard let ingredient = addIngredientTextField.text?.lowercased() else {
-            return
-        }
-        guard ingredient.ingredientNameIsCorrect else {
+        guard let ingredient = addIngredientTextField.text?.lowercased(),
+              ingredient.ingredientNameIsCorrect else {
             self.showAlert(for: self, title: "Error", message: "Please enter a correct ingredient name")
             addIngredientTextField.text = nil
             return
@@ -139,18 +137,12 @@ extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard dataSource.count != 0 else {
-            return 100
-        }
-        return 0
+        return dataSource.count != 0 ? 0 : 100
     }
     
     // MARK: - TableView Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard dataSource != [] else {
-            return
-        }
         dataSource.remove(at: indexPath.row)
     }
 }

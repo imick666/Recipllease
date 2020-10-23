@@ -37,7 +37,7 @@ class CoreDataTest: XCTestCase {
         }
         
         XCTAssertEqual(cdStack?.allRecipes.count, 1)
-        XCTAssertEqual(cdStack?.allRecipes[0].name, "Côte de Boeuf with Caramelized Shallots")
+        XCTAssertEqual(cdStack?.allRecipes[0].label, "Côte de Boeuf with Caramelized Shallots")
     }
     
     func testDeleteStoredRecipe() {
@@ -61,7 +61,7 @@ class CoreDataTest: XCTestCase {
         }
         
         XCTAssertEqual(items.count, 1)
-        XCTAssertEqual(items[0].name, "Côte de Boeuf with Caramelized Shallots")
+        XCTAssertEqual(items[0].label, "Côte de Boeuf with Caramelized Shallots")
         
         //Delete Recipe
         cdStack?.deleteRecipe(items[0])

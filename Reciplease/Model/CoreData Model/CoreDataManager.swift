@@ -38,7 +38,7 @@ final class CoreDataManager {
         return recipes
     }
     
-    var allRecipesAsStored: [StoredRecipe] {
+    private var allRecipesAsStored: [StoredRecipe] {
         let request: NSFetchRequest<StoredRecipe> = StoredRecipe.fetchRequest()
         request.sortDescriptors = [
             NSSortDescriptor(key: "addedDate", ascending: false)
