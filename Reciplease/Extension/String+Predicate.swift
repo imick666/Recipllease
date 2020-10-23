@@ -16,7 +16,7 @@ extension String {
         guard ingredient.count > 3 else {
             return false
         }
-        let filtre = "^(?=.*[@&é\"'(§è!çà)-_#,;:=?./+[0-9] ]).{0,}$"
+        let filtre = "^(?=.*[@&é\"'(§è!çà)-_#,;:=?./+[0-9]]).{0,}$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", filtre)
         return !predicate.evaluate(with: self)
     }

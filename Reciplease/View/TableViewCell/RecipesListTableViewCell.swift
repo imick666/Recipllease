@@ -52,8 +52,8 @@ class RecipesListTableViewCell: UITableViewCell {
         
         if let image = recipe.dataImage {
             backgroundImage.image = UIImage(data: image)
-        } else {
-            backgroundImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
+        } else if let imageUrl = recipe.image {
+            backgroundImage.sd_setImage(with: URL(string: imageUrl), completed: nil)
         }
         nameLabel.text = recipe.label
         yieldLabel.text = "\(Int(recipe.yield))"

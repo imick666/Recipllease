@@ -90,6 +90,7 @@ class RecipeSearchController: UIViewController {
         dataSource.append(ingredient)
         addIngredientTextField.text = nil
     }
+    
     @IBAction func clearButtonTapped(_ sender: Any) {
         dataSource = []
     }
@@ -153,6 +154,8 @@ extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
         dataSource.remove(at: indexPath.row)
     }
 }
+
+// MARK: - Extension TextField Delegate
 
 extension RecipeSearchController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

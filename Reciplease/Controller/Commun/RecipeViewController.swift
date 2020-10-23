@@ -26,7 +26,7 @@ class RecipeViewController: UIViewController {
     private let coreData = CoreDataManager()
     
     var recipe: Recipe?
-    private var isStored: Bool {
+    private var recipeIsStored: Bool {
         return coreData.allRecipesAsStored.contains(where: {$0.name == recipe?.label})
     }
     
@@ -38,22 +38,22 @@ class RecipeViewController: UIViewController {
         setupTableView()
 
         setupView()
+        setupFavoriteTint()
         getDirectionsButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Get directions", textColor: .white)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        favoriteButton.tintColor = isStored ? #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1) : #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1)
-    }
-    
     // MARK: - Methodes
+    
+    private func setupFavoriteTint() {
+        favoriteButton.tintColor = recipeIsStored ? #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1) : #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1)
+    }
     
     private func setupView() {
         guard let recipe = recipe else { return }
         if let image = recipe.dataImage {
             recipeImage.image = UIImage(data: image)
-        } else {
-            recipeImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
+        } else if let imageUrl = recipe.image {
+            recipeImage.sd_setImage(with: URL(string: imageUrl), completed: nil)
         }
         
         NameLabel.text = recipe.label
@@ -67,22 +67,6 @@ class RecipeViewController: UIViewController {
     }
     
     private func setupTableView() {
-        // Create TableView Header
-        var headerView: UIView {
-            let label = UILabel(frame: CGRect(x: 8, y: 0, width: 150, height: 44))
-            label.text = "Ingredients"
-            label.font = UIFont(name: "Chalkduster", size: 22)
-            label.textColor = .white
-            label.backgroundColor = .clear
-            
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 44))
-            view.backgroundColor = .clear
-            view.addSubview(label)
-            
-            return view
-        }
-        tableView.tableHeaderView = headerView
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 84))
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
     }
@@ -100,7 +84,7 @@ class RecipeViewController: UIViewController {
     
     @IBAction func addFavoriteButtonTapped(_ sender: Any) {
         guard let recipe = recipe else { return }
-        if isStored {
+        if recipeIsStored {
             coreData.deleteRecipe(recipe)
             navigationController?.popViewController(animated: true)
         } else {
@@ -109,7 +93,7 @@ class RecipeViewController: UIViewController {
             }
             coreData.storeRecipe(recipe, image: image)
         }
-        favoriteButton.tintColor = isStored ? #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1) : #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1)
+        setupFavoriteTint()
     }
 }
 
@@ -117,6 +101,19 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let recipe = recipe else { return 0}
         return recipe.ingredientLines.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Ingredients"
+        label.font = UIFont(name: "Chalkduster", size: 20)
+        label.textColor = .white
+        label.backgroundColor = #colorLiteral(red: 0.2145212293, green: 0.2007080019, blue: 0.1960143745, alpha: 1)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,11 +127,20 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = UIFont(name: "Chalkduster", size: 17)
         
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 84
     }
 }

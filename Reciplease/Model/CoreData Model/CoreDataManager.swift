@@ -28,7 +28,7 @@ final class CoreDataManager {
         var recipes: Recipes {
             var recipes = [Recipe]()
             result.forEach { (storedRecipe) in
-                let newRecipe = Recipe(label: storedRecipe.name ?? "unknown", url: storedRecipe.url ?? "", image: "", dataImage: storedRecipe.image, yield: storedRecipe.yield, totalTime: storedRecipe.totalTime, ingredientLines: storedRecipe.ingredients ?? [], bookMarked: true)
+                let newRecipe = Recipe(label: storedRecipe.name ?? "unknown", url: storedRecipe.url ?? "", image: "", dataImage: storedRecipe.image, yield: storedRecipe.yield, totalTime: storedRecipe.totalTime, ingredientLines: storedRecipe.ingredients ?? [])
                 recipes.append(newRecipe)
             }
             
@@ -58,7 +58,10 @@ final class CoreDataManager {
     }
     
     convenience init() {
-        let appDel = UIApplication.shared.delegate as! AppDelegate
+        guard let appDel = UIApplication.shared.delegate as? AppDelegate else {
+            self.init(context: AppDelegate().persistentContainer.viewContext)
+            return
+        }
         self.init(context: appDel.persistentContainer.viewContext)
     }
     

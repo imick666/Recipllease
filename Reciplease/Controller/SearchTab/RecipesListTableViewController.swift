@@ -26,11 +26,7 @@ class RecipesListTableViewController: UITableViewController {
         tableView.register(nib, forCellReuseIdentifier: Constants.Cells.recipeCell)
         tableView.separatorStyle = .none
     }
-    
-    // MARK: - Methodes
-    
-    
-    
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
