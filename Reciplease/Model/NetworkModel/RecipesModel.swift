@@ -18,9 +18,11 @@ struct RecipesModel: Decodable {
             var label: String
             var url: String
             var image: String
+            var dataImage: Data?
             var yield: Double
             var totalTime: Double
             var ingredientLines: [String]
+            var bookMarked: Bool?
         }
     }
 }

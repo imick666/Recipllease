@@ -27,12 +27,6 @@ class RecipesListTableViewCell: UITableViewCell {
         }
     }
     
-    var storedRecipe: StoredRecipe? {
-        didSet {
-            setupCellFromStored()
-        }
-    }
-    
     // MARK: - Override
     
     override func awakeFromNib() {
@@ -47,7 +41,6 @@ class RecipesListTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
     // MARK: - Methodes
@@ -56,21 +49,15 @@ class RecipesListTableViewCell: UITableViewCell {
         guard let recipe = recipe else {
             return
         }
-        backgroundImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
+        
+        if let image = recipe.dataImage {
+            backgroundImage.image = UIImage(data: image)
+        } else {
+            backgroundImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
+        }
         nameLabel.text = recipe.label
         yieldLabel.text = "\(Int(recipe.yield))"
         timeLabel.text = recipe.totalTime.hhmmString
         ingredientsLabel.text = recipe.ingredientLines.joined(separator: ", ")
     }
-    
-    private func setupCellFromStored() {
-        guard let recipe = storedRecipe else {
-            return
-        }
-        backgroundImage.image = UIImage(data: recipe.image!)
-        nameLabel.text = recipe.name
-        yieldLabel.text = "\(Int(recipe.yield))"
-        timeLabel.text = recipe.totalTime.hhmmString
-    }
-    
 }

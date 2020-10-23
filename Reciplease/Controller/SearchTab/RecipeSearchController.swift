@@ -37,6 +37,9 @@ class RecipeSearchController: UIViewController {
         // Addd footer for tableview
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 84))
         tableView.separatorStyle = .none
+        
+        // Setup TextField
+        addIngredientTextField.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -148,5 +151,12 @@ extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         dataSource.remove(at: indexPath.row)
+    }
+}
+
+extension RecipeSearchController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -19,14 +19,16 @@ class RecipeViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var getDirectionsButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     // MARK: - Properties
     
-    let coreData = CoreDataManager()
+    private let coreData = CoreDataManager()
     
     var recipe: Recipe?
-    
-    var storedRecipe: StoredRecipe?
+    private var isStored: Bool {
+        return coreData.allRecipesAsStored.contains(where: {$0.name == recipe?.label})
+    }
     
     // MARK: - ViewLife Cycle
 
@@ -37,26 +39,26 @@ class RecipeViewController: UIViewController {
 
         setupView()
         getDirectionsButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Get directions", textColor: .white)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        favoriteButton.tintColor = isStored ? #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1) : #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1)
     }
     
     // MARK: - Methodes
     
     private func setupView() {
-        if let recipe = recipe {
+        guard let recipe = recipe else { return }
+        if let image = recipe.dataImage {
+            recipeImage.image = UIImage(data: image)
+        } else {
             recipeImage.sd_setImage(with: URL(string: recipe.image), completed: nil)
-            
-            NameLabel.text = recipe.label
-            yieldLabel.text = "\(Int(recipe.yield))"
-            timeLabel.text = recipe.totalTime.hhmmString
         }
         
-        if let recipe = storedRecipe {
-            recipeImage.image = UIImage(data: recipe.image!)
-            NameLabel.text = recipe.name
-            yieldLabel.text = "\(Int(recipe.yield))"
-            timeLabel.text = recipe.totalTime.hhmmString
-        }
+        NameLabel.text = recipe.label
+        yieldLabel.text = "\(Int(recipe.yield))"
+        timeLabel.text = recipe.totalTime.hhmmString
         
         recipeImage.createGradient(frame: CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2))
         detailView.layer.cornerRadius = 5
@@ -93,42 +95,34 @@ class RecipeViewController: UIViewController {
                 return
             }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else if let recipeUrl = storedRecipe?.url {
-            guard let url = URL(string: recipeUrl) else {
-                return
-            }
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
     @IBAction func addFavoriteButtonTapped(_ sender: Any) {
-        guard let recipe = recipe, let image = recipeImage.image?.sd_imageData() else {
-            return
+        guard let recipe = recipe else { return }
+        if isStored {
+            coreData.deleteRecipe(recipe)
+            navigationController?.popViewController(animated: true)
+        } else {
+            guard let image = recipeImage.image?.sd_imageData() else {
+                return
+            }
+            coreData.storeRecipe(recipe, image: image)
         }
-        
-        coreData.storeRecipe(recipe, image: image)
+        favoriteButton.tintColor = isStored ? #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1) : #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1)
     }
-    
 }
 
 extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let ingredients = recipe?.ingredientLines {
-            return ingredients.count
-        } else if let ingredients = storedRecipe?.ingredients {
-            return ingredients.count
-        } else {
-            return 0
-        }
+        guard let recipe = recipe else { return 0}
+        return recipe.ingredientLines.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         
         if let ingredients = recipe?.ingredientLines {
-            cell.textLabel?.text = "- \(ingredients[indexPath.row])"
-        }
-        if let ingredients = storedRecipe?.ingredients {
             cell.textLabel?.text = "- \(ingredients[indexPath.row])"
         }
         
@@ -143,7 +137,4 @@ extension RecipeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
     }
-    
-    
-    
 }

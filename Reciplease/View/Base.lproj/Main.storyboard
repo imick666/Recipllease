@@ -285,7 +285,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fA1-EM-Clu">
-                        <barButtonItem key="rightBarButtonItem" title="Favorite" id="ywo-8X-i95">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="star.fill" id="ywo-8X-i95">
+                            <color key="tintColor" red="0.54183709619999998" green="0.54191809889999998" blue="0.54181939359999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="addFavoriteButtonTapped:" destination="Ktn-Wb-G6z" id="NVd-20-pPP"/>
                             </connections>
@@ -294,6 +295,7 @@
                     <connections>
                         <outlet property="NameLabel" destination="Np4-00-Dn3" id="mpu-AN-pGP"/>
                         <outlet property="detailView" destination="hjC-fE-jFS" id="Rmv-7D-puo"/>
+                        <outlet property="favoriteButton" destination="ywo-8X-i95" id="7EH-rC-l9n"/>
                         <outlet property="getDirectionsButton" destination="5e6-ia-Sp1" id="9qc-xM-ZKG"/>
                         <outlet property="recipeImage" destination="ro2-SD-oxp" id="9qw-2d-CWq"/>
                         <outlet property="tableView" destination="jni-RT-0uB" id="hop-Sg-6UO"/>
@@ -394,9 +396,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cQw-tn-4Xr"/>
+        <segue reference="0L0-wb-rta"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ImagesResult1" width="300" height="300"/>
+        <image name="star.fill" width="24" height="24"/>
     </resources>
 </document>

@@ -13,7 +13,7 @@ class FavoritesTableViewController: UITableViewController {
     
     private let coreData = CoreDataManager()
     
-    private var dataSource: [StoredRecipe]?
+    private var dataSource: Recipes?
     
     // MARK: - ViewLife Cycle
     
@@ -47,7 +47,7 @@ class FavoritesTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        cell.storedRecipe = dataSource?[indexPath.row]
+        cell.recipe = dataSource?[indexPath.row]
         
         return cell
     }
@@ -76,17 +76,6 @@ class FavoritesTableViewController: UITableViewController {
     }
 
     // MARK: - TableView Delegate
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            guard let recipe = dataSource?[indexPath.row] else {
-                return
-            }
-            coreData.deleteRecipe(recipe)
-            
-            reloadData()
-        }
-    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let recipe = dataSource?[indexPath.row] else {
@@ -103,7 +92,8 @@ class FavoritesTableViewController: UITableViewController {
             guard let destination = segue.destination as? RecipeViewController else {
                 return
             }
-            destination.storedRecipe = sender as? StoredRecipe
+            destination.recipe = sender as? Recipe
+            
         }
     }
 }

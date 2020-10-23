@@ -13,12 +13,35 @@ final class CoreDataManager {
     
     // MARK: - Properties
     
-    private let context: NSManagedObjectContext
+    private var context: NSManagedObjectContext
     
-    var allRecipes: [StoredRecipe] {
+    var allRecipes: Recipes {
         let request: NSFetchRequest<StoredRecipe> = StoredRecipe.fetchRequest()
         request.sortDescriptors = [
-            NSSortDescriptor(key: "addedDate", ascending: true)
+            NSSortDescriptor(key: "addedDate", ascending: false)
+        ]
+        
+        guard let result = try? context.fetch(request) else {
+            return []
+        }
+        
+        var recipes: Recipes {
+            var recipes = [Recipe]()
+            result.forEach { (storedRecipe) in
+                let newRecipe = Recipe(label: storedRecipe.name ?? "unknown", url: storedRecipe.url ?? "", image: "", dataImage: storedRecipe.image, yield: storedRecipe.yield, totalTime: storedRecipe.totalTime, ingredientLines: storedRecipe.ingredients ?? [], bookMarked: true)
+                recipes.append(newRecipe)
+            }
+            
+            return recipes
+        }
+        
+        return recipes
+    }
+    
+    var allRecipesAsStored: [StoredRecipe] {
+        let request: NSFetchRequest<StoredRecipe> = StoredRecipe.fetchRequest()
+        request.sortDescriptors = [
+            NSSortDescriptor(key: "addedDate", ascending: false)
         ]
         
         guard let result = try? context.fetch(request) else {
@@ -30,8 +53,13 @@ final class CoreDataManager {
     
     // MARK: - Init
     
-    init(context: NSManagedObjectContext = AppDelegate().persistentContainer.viewContext) {
+    init(context: NSManagedObjectContext) {
         self.context = context
+    }
+    
+    convenience init() {
+        let appDel = UIApplication.shared.delegate as! AppDelegate
+        self.init(context: appDel.persistentContainer.viewContext)
     }
     
     // MARK: - Methodes
@@ -50,8 +78,11 @@ final class CoreDataManager {
     }
     
     
-    func deleteRecipe(_ recipe: StoredRecipe) {
-        context.delete(recipe)
+    func deleteRecipe(_ recipe: Recipe) {
+        guard let recipeToDelete = allRecipesAsStored.first(where: {$0.name == recipe.label}) else {
+            return
+        }
+        context.delete(recipeToDelete)
         
         saveContext()
     }
