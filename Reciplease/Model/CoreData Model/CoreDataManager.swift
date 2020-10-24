@@ -16,18 +16,11 @@ final class CoreDataManager {
     private var context: NSManagedObjectContext
     
     var allRecipes: Recipes {
-        let request: NSFetchRequest<StoredRecipe> = StoredRecipe.fetchRequest()
-        request.sortDescriptors = [
-            NSSortDescriptor(key: "addedDate", ascending: false)
-        ]
-        
-        guard let result = try? context.fetch(request) else {
-            return []
-        }
+        let recipesAsStored = allRecipesAsStored
         
         var recipes: Recipes {
             var recipes = [Recipe]()
-            result.forEach { (storedRecipe) in
+            recipesAsStored.forEach { (storedRecipe) in
                 let newRecipe = Recipe(label: storedRecipe.name ?? "unknown", url: storedRecipe.url ?? "", image: "", dataImage: storedRecipe.image, yield: storedRecipe.yield, totalTime: storedRecipe.totalTime, ingredientLines: storedRecipe.ingredients ?? [])
                 recipes.append(newRecipe)
             }
@@ -44,9 +37,7 @@ final class CoreDataManager {
             NSSortDescriptor(key: "addedDate", ascending: false)
         ]
         
-        guard let result = try? context.fetch(request) else {
-            return []
-        }
+        guard let result = try? context.fetch(request) else { return [] }
         
         return result
     }
@@ -91,6 +82,8 @@ final class CoreDataManager {
     }
     
     func saveContext() {
+        guard context.hasChanges else { return }
+        
         do {
             try context.save()
         } catch {

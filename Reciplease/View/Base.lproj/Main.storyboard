@@ -235,32 +235,53 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-fE-jFS">
                                 <rect key="frame" x="316" y="8" width="90" height="57"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2o2-cd-vbD">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bGm-a7-hPa">
                                         <rect key="frame" x="8" y="8" width="74" height="41"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yield Lable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLd-Bv-lPR">
-                                                <rect key="frame" x="0.0" y="0.0" width="74" height="16.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9D8-ff-E4B">
-                                                <rect key="frame" x="0.0" y="24.5" width="74" height="16.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sl1-t9-gkK">
+                                                <rect key="frame" x="0.0" y="0.0" width="16.5" height="41"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YieldIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Wj8-YH-ZDH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="16.5" height="16.5"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="Wj8-YH-ZDH" secondAttribute="height" multiplier="1:1" id="jfw-qE-bZ2"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TotalTimeIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xSL-9L-j0w">
+                                                        <rect key="frame" x="0.0" y="24.5" width="16.5" height="16.5"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </imageView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2o2-cd-vbD">
+                                                <rect key="frame" x="24.5" y="0.0" width="49.5" height="41"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yield Lable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLd-Bv-lPR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="49.5" height="16.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9D8-ff-E4B">
+                                                        <rect key="frame" x="0.0" y="24.5" width="49.5" height="16.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.2145212293" green="0.20070800189999999" blue="0.1960143745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="2o2-cd-vbD" firstAttribute="leading" secondItem="hjC-fE-jFS" secondAttribute="leading" constant="8" id="D9z-IN-Ma7"/>
-                                    <constraint firstAttribute="bottom" secondItem="2o2-cd-vbD" secondAttribute="bottom" constant="8" id="Eck-ji-rXp"/>
+                                    <constraint firstItem="bGm-a7-hPa" firstAttribute="leading" secondItem="hjC-fE-jFS" secondAttribute="leading" constant="8" id="ZHf-0g-1MN"/>
+                                    <constraint firstAttribute="bottom" secondItem="bGm-a7-hPa" secondAttribute="bottom" constant="8" id="ayT-JH-O8F"/>
                                     <constraint firstAttribute="height" constant="57" id="ppy-AM-pdL"/>
-                                    <constraint firstItem="2o2-cd-vbD" firstAttribute="top" secondItem="hjC-fE-jFS" secondAttribute="top" constant="8" id="pvH-Hs-8Af"/>
-                                    <constraint firstAttribute="trailing" secondItem="2o2-cd-vbD" secondAttribute="trailing" constant="8" id="rRV-x1-GhW"/>
+                                    <constraint firstItem="bGm-a7-hPa" firstAttribute="top" secondItem="hjC-fE-jFS" secondAttribute="top" constant="8" id="qmx-qV-Q0U"/>
                                     <constraint firstAttribute="width" constant="90" id="uHm-ig-A6r"/>
+                                    <constraint firstAttribute="trailing" secondItem="bGm-a7-hPa" secondAttribute="trailing" constant="8" id="ujN-ir-oix"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -305,7 +326,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QIR-30-2W8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2769.5652173913045" y="160.71428571428569"/>
+            <point key="canvasLocation" x="2769.5652173913045" y="160.04464285714286"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hT9-Zc-YeV">
@@ -316,6 +337,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.2145212293" green="0.20070800189999999" blue="0.1960143745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.2145212293" green="0.20070800189999999" blue="0.1960143745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.26827660199999998" green="0.58383494619999998" blue="0.36244666580000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="xqf-d0-WSb" kind="relationship" relationship="viewControllers" id="4ZR-GV-G7X"/>
@@ -330,7 +352,7 @@
         <scene sceneID="Qov-R0-lMX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xqf-d0-WSb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="z5S-cu-IB5"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingGlass (25pt x 25pt )" id="z5S-cu-IB5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Nli-Nf-WbD">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -353,7 +375,7 @@
         <scene sceneID="NX3-YB-pLF">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="a0y-B6-Tvb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorite" id="VMr-85-UQp"/>
+                    <tabBarItem key="tabBarItem" title="Favorite" image="star.fill" id="VMr-85-UQp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="gey-LD-kcS">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -400,6 +422,9 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ImagesResult1" width="300" height="300"/>
+        <image name="TotalTimeIcon" width="512" height="512"/>
+        <image name="YieldIcon" width="512" height="512"/>
+        <image name="magnifyingGlass (25pt x 25pt )" width="25" height="25"/>
         <image name="star.fill" width="24" height="24"/>
     </resources>
 </document>

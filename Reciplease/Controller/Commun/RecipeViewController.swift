@@ -54,22 +54,24 @@ class RecipeViewController: UIViewController {
     
     private func setupView() {
         guard let recipe = recipe else { return }
+        // Setup image
         if let image = recipe.dataImage {
             recipeImage.image = UIImage(data: image)
         } else if let imageUrl = recipe.image {
             recipeImage.sd_setImage(with: URL(string: imageUrl), completed: nil)
         }
-        
-        NameLabel.text = recipe.label
-        yieldLabel.text = "\(Int(recipe.yield))"
-        timeLabel.text = recipe.totalTime.hhmmString
-        
         gradient.colors = [UIColor.clear.cgColor, #colorLiteral(red: 0.2145212293, green: 0.2007080019, blue: 0.1960143745, alpha: 1).cgColor]
         gradient.locations = [0, 0.8]
         let gradientFrame = CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2)
         gradient.frame = gradientFrame
         recipeImage.layer.addSublayer(gradient)
         
+        // Setup Labels
+        NameLabel.text = recipe.label
+        yieldLabel.text = "\(Int(recipe.yield))"
+        timeLabel.text = recipe.totalTime.hhmmString
+        
+        // Setup DetailView
         detailView.layer.cornerRadius = 5
         detailView.layer.borderWidth = 2
         detailView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -91,7 +93,9 @@ class RecipeViewController: UIViewController {
         guard let recipe = recipe else { return }
         if recipeIsStored {
             coreData.deleteRecipe(recipe)
-            navigationController?.popViewController(animated: true)
+            if tabBarController?.selectedIndex == 1 {
+                navigationController?.popViewController(animated: true)
+            }
         } else {
             guard let image = recipeImage.image?.sd_imageData() else { return }
             coreData.storeRecipe(recipe, image: image)

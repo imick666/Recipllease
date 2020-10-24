@@ -20,7 +20,7 @@ extension Double {
             return (hours, minutes)
         }
         
-        let string = "\(formattedTime.hour)h \(formattedTime.minutes)m "
+        let string = "\(formattedTime.hour)h\(formattedTime.minutes)m "
         
         return string
     }
