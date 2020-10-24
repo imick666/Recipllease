@@ -24,6 +24,7 @@ class RecipeViewController: UIViewController {
     // MARK: - Properties
     
     private let coreData = CoreDataManager()
+    private let gradient = CAGradientLayer()
     
     var recipe: Recipe?
     private var recipeIsStored: Bool {
@@ -34,16 +35,15 @@ class RecipeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupTableView()
-
         setupView()
+        setupTableView()
         getDirectionsButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Get directions", textColor: .white)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupFavoriteTint()
+        
     }
     
     // MARK: - Methodes
@@ -64,7 +64,12 @@ class RecipeViewController: UIViewController {
         yieldLabel.text = "\(Int(recipe.yield))"
         timeLabel.text = recipe.totalTime.hhmmString
         
-        recipeImage.createGradient(frame: CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2))
+        gradient.colors = [UIColor.clear.cgColor, #colorLiteral(red: 0.2145212293, green: 0.2007080019, blue: 0.1960143745, alpha: 1).cgColor]
+        gradient.locations = [0, 0.8]
+        let gradientFrame = CGRect(x: recipeImage.frame.minX, y: recipeImage.frame.maxY / 2, width: recipeImage.frame.width, height: recipeImage.frame.height / 2)
+        gradient.frame = gradientFrame
+        recipeImage.layer.addSublayer(gradient)
+        
         detailView.layer.cornerRadius = 5
         detailView.layer.borderWidth = 2
         detailView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)

@@ -27,6 +27,8 @@ class RecipesListTableViewCell: UITableViewCell {
         }
     }
     
+    private var gradient = CAGradientLayer()
+    
     // MARK: - Override
     
     override func awakeFromNib() {
@@ -34,12 +36,16 @@ class RecipesListTableViewCell: UITableViewCell {
         detailView.layer.cornerRadius = 5
         detailView.layer.borderWidth = 2
         detailView.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        let gradientFrame = CGRect(x: self.frame.minX, y: self.frame.maxY / 2, width: self.frame.width, height: self.frame.height / 2)
-        backgroundImage.createGradient(frame: gradientFrame)
+        
+        gradient.colors = [UIColor.clear.cgColor, #colorLiteral(red: 0.2145212293, green: 0.2007080019, blue: 0.1960143745, alpha: 1).cgColor]
+        gradient.locations = [0, 0.8]
+        backgroundImage.layer.addSublayer(gradient)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let gradientFrame = CGRect(x: backgroundImage.frame.minX, y: backgroundImage.frame.maxY / 2, width: backgroundImage.frame.width, height: backgroundImage.frame.height / 2)
+        gradient.frame = gradientFrame
     }
     
     // MARK: - Methodes
