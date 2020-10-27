@@ -95,14 +95,14 @@ class RecipeSearchController: UIViewController {
     // MARK: - Actions
     
     @IBAction func addIngredientButtonTapped(_ sender: Any) {
-        guard let ingredient = addIngredientTextField.text?.lowercased(),
-              ingredient.ingredientNameIsCorrect else {
-            self.showAlert(for: self, title: "Error", message: "Please enter a correct ingredient name")
-            addIngredientTextField.text = nil
-            return
+        guard let ingredients = addIngredientTextField.text?.split(separator: ",") else { return }
+        for ingredient in ingredients {
+            guard ingredient.lowercased().ingredientNameIsCorrect else {
+                showAlert(for: self, title: "Erreur", message: "Please, enter a correct entry")
+                continue
+            }
+            dataSource.append(ingredient.lowercased().trimmingCharacters(in: .whitespacesAndNewlines))
         }
-        
-        dataSource.append(ingredient)
         addIngredientTextField.text = nil
     }
     
@@ -136,10 +136,14 @@ extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = "Please, add some ingredients"
+        label.text = """
+Please, add some ingredients
+You can separate ingrients by a \",\"
+"""
         label.textAlignment = .center
         label.font = UIFont(name: "Chalkduster", size: 18)
         label.textColor = .white
+        label.numberOfLines = 0
         
         return label
     }
