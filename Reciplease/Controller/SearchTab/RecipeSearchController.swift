@@ -20,6 +20,16 @@ class RecipeSearchController: UIViewController {
     // MARK: - Properties
     
     private let networkServices = NetworkServices()
+    private var frameUnderline: CGRect {
+        let frame = CGRect(x: addIngredientTextField.bounds.minX, y: addIngredientTextField.bounds.maxY - 3, width: addIngredientTextField.bounds.width, height: 2)
+        return frame
+    }
+    private var textFieldUnderline: UIView = {
+        let underline = UIView()
+        underline.backgroundColor = #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1)
+        underline.alpha = 0.5
+        return underline
+    }()
     
     var dataSource = [String]() {
         didSet {
@@ -32,36 +42,43 @@ class RecipeSearchController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupButton()
+        setupButtons()
         
-        // Addd footer for tableview
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 84))
-        tableView.separatorStyle = .none
+        setUpTableView()
         
-        // Setup TextField
-        addIngredientTextField.delegate = self
+        setupTextField()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupTextField()
+        textFieldUnderline.frame = frameUnderline
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: nil) { (_) in
+            self.textFieldUnderline.frame = self.frameUnderline
+        }
     }
     
     // MARK: - Methodes
     
-    private func setupButton() {
-        addIngredientButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Add", textColor: .white)
-        clearButton.round(background: #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1), title: "Clear", textColor: .white)
-        searchButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Search for recipes", textColor: .white)
+    private func setUpTableView() {
+        tableView.separatorStyle = .none
+
     }
     
     private func setupTextField() {
+        addIngredientTextField.delegate = self
         addIngredientTextField.borderStyle = .none
-        let underline = UIView()
-        underline.backgroundColor = #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1)
-        underline.frame = CGRect(x: addIngredientTextField.bounds.minX, y: addIngredientTextField.bounds.maxY - 3, width: addIngredientTextField.bounds.width, height: 2)
-        underline.alpha = 0.5
-        addIngredientTextField.addSubview(underline)
+        addIngredientTextField.addSubview(textFieldUnderline)
+    }
+    
+    private func setupButtons() {
+        addIngredientButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Add", textColor: .white)
+        clearButton.round(background: #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1), title: "Clear", textColor: .white)
+        searchButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Search for recipes", textColor: .white)
     }
 
     // MARK: - Navigation
@@ -115,16 +132,7 @@ extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
         return dataSource.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.font = UIFont(name: "Chalkduster", size: 18)
-        cell.textLabel?.textColor = .white
-        cell.backgroundColor = .clear
-
-        cell.textLabel?.text = "- " + dataSource[indexPath.row].capitalized
-        
-        return cell
-    }
+    // MARK: - Header In Section
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
@@ -138,6 +146,29 @@ extension RecipeSearchController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return dataSource.count != 0 ? 0 : 100
+    }
+    
+    // MARK: - Cell
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.font = UIFont(name: "Chalkduster", size: 18)
+        cell.textLabel?.textColor = .white
+        cell.backgroundColor = .clear
+
+        cell.textLabel?.text = "- " + dataSource[indexPath.row].capitalized
+        
+        return cell
+    }
+    
+    // MARK: - Footer In Section
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 84
     }
     
     // MARK: - TableView Delegate
