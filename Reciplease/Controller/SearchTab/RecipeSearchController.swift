@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecipeSearchController: UIViewController {
+final class RecipeSearchController: UIViewController {
     
     // MARK: - Outlets
     
@@ -54,14 +54,6 @@ class RecipeSearchController: UIViewController {
         textFieldUnderline.frame = frameUnderline
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: nil) { (_) in
-            self.textFieldUnderline.frame = self.frameUnderline
-        }
-    }
-    
     // MARK: - Methodes
     
     private func setUpTableView() {
@@ -95,10 +87,10 @@ class RecipeSearchController: UIViewController {
     // MARK: - Actions
     
     @IBAction func addIngredientButtonTapped(_ sender: Any) {
-        guard let ingredients = addIngredientTextField.text?.split(separator: ",") else { return }
+        guard let ingredients = addIngredientTextField.text?.transformToArray else { return }
         for ingredient in ingredients {
             guard ingredient.lowercased().ingredientNameIsCorrect else {
-                showAlert(for: self, title: "Erreur", message: "Please, enter a correct entry")
+                showAlert(title: "Erreur", message: "Please, enter a correct entry")
                 continue
             }
             dataSource.append(ingredient.lowercased().trimmingCharacters(in: .whitespacesAndNewlines))
@@ -114,7 +106,7 @@ class RecipeSearchController: UIViewController {
         networkServices.getRecipes(q: dataSource) { (result) in
             switch result {
             case .failure(let error):
-                self.showAlert(for: self, title: "Error", message: error.description)
+                self.showAlert(title: "Error", message: error.description)
             case .success(let data):
                 self.performSegue(withIdentifier: Constants.Segues.RecipesList, sender: data)
             }

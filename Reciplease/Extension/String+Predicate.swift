@@ -20,4 +20,8 @@ extension String {
         let predicate = NSPredicate(format: "SELF MATCHES %@", filtre)
         return !predicate.evaluate(with: self)
     }
+    
+    var transformToArray: [String] {
+        self.components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ").filter {!$0.isEmpty }
+    }
 }

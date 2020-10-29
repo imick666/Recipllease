@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecipeViewController: UIViewController {
+final class RecipeViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var recipeImage: UIImageView!
@@ -23,12 +23,13 @@ class RecipeViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let coreData = CoreDataManager()
+    private var coreData: CoreDataManager?
     private let gradient = CAGradientLayer()
     
     var recipe: Recipe?
     private var recipeIsStored: Bool {
-        return coreData.allRecipes.contains(where: {$0.label == recipe?.label})
+        guard coreData != nil else { return false }
+        return coreData!.allRecipes.contains(where: {$0.label == recipe?.label})
     }
     
     // MARK: - ViewLife Cycle
@@ -38,6 +39,10 @@ class RecipeViewController: UIViewController {
         setupView()
         setupTableView()
         getDirectionsButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Get directions", textColor: .white)
+        
+        // Setup CoreDataManager
+        guard let appDel = UIApplication.shared.delegate as? AppDelegate else { return }
+        coreData = CoreDataManager(context: appDel.persistentContainer.viewContext)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,13 +97,13 @@ class RecipeViewController: UIViewController {
     @IBAction func addFavoriteButtonTapped(_ sender: Any) {
         guard let recipe = recipe else { return }
         if recipeIsStored {
-            coreData.deleteRecipe(recipe)
+            coreData?.deleteRecipe(recipe)
             if tabBarController?.selectedIndex == 1 {
                 navigationController?.popViewController(animated: true)
             }
         } else {
             guard let image = recipeImage.image?.sd_imageData() else { return }
-            coreData.storeRecipe(recipe, image: image)
+            coreData?.storeRecipe(recipe, image: image)
         }
         setupFavoriteTint()
     }

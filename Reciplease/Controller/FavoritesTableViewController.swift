@@ -7,11 +7,11 @@
 
 import UIKit
 
-class FavoritesTableViewController: UITableViewController {
+final class FavoritesTableViewController: UITableViewController {
 
     // MARK: - Properties
     
-    private let coreData = CoreDataManager()
+    private var coreData: CoreDataManager?
     
     private var dataSource: Recipes?
     
@@ -21,6 +21,11 @@ class FavoritesTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: Constants.nibName.recipeCell, bundle: nil), forCellReuseIdentifier: Constants.Cells.recipeCell)
         tableView.separatorStyle = .none
+        
+        // Setup CoreDataManager
+        guard let appDel = UIApplication.shared.delegate as? AppDelegate else { return }
+        coreData = CoreDataManager(context: appDel.persistentContainer.viewContext)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,7 +36,7 @@ class FavoritesTableViewController: UITableViewController {
     // MARK: - Methodes
     
     private func reloadData() {
-        dataSource = coreData.allRecipes
+        dataSource = coreData?.allRecipes
         
         tableView.reloadData()
     }

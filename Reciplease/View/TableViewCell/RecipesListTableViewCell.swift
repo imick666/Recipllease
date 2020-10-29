@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class RecipesListTableViewCell: UITableViewCell {
+final class RecipesListTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
 

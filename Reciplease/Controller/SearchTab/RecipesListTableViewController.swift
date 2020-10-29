@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import SDWebImage
 
-class RecipesListTableViewController: UITableViewController {
+final class RecipesListTableViewController: UITableViewController {
 
     // MARK: - Properties
     

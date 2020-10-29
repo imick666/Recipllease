@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreData
-import SDWebImage
 
 final class CoreDataManager {
     
@@ -27,7 +26,6 @@ final class CoreDataManager {
             
             return recipes
         }
-        
         return recipes
     }
     
@@ -48,14 +46,6 @@ final class CoreDataManager {
         self.context = context
     }
     
-    convenience init() {
-        guard let appDel = UIApplication.shared.delegate as? AppDelegate else {
-            self.init(context: AppDelegate().persistentContainer.viewContext)
-            return
-        }
-        self.init(context: appDel.persistentContainer.viewContext)
-    }
-    
     // MARK: - Methodes
     
     func storeRecipe(_ recipe: Recipe, image: Data){
@@ -73,9 +63,7 @@ final class CoreDataManager {
     
     
     func deleteRecipe(_ recipe: Recipe) {
-        guard let recipeToDelete = allRecipesAsStored.first(where: {$0.name == recipe.label}) else {
-            return
-        }
+        guard let recipeToDelete = allRecipesAsStored.first(where: {$0.name == recipe.label}) else { return }
         context.delete(recipeToDelete)
         
         saveContext()

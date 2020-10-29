@@ -5,17 +5,16 @@
 //  Created by mickael ruzel on 20/10/2020.
 //
 
-import Foundation
 import UIKit
 
 extension UIViewController {
     
-    func showAlert(for vc: UIViewController, title: String?, message: String?) {
-        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+    func showAlert(title: String?, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAlertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         
-        ac.addAction(ok)
+        alertController.addAction(okAlertAction)
         
-        vc.present(ac, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
 }

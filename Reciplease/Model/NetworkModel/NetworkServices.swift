@@ -45,7 +45,7 @@ final class NetworkServices {
             return param
         }
         
-        let identification = ["q": query, "app_id": APIConfig.app_id, "app_key": APIConfig.app_key]
+        let identification = ["q": query, "app_id": APIConfig.appId, "app_key": APIConfig.appKey]
         
         sessions.request(url: baseUrl, parameters: identification) { (result) in
             guard let response = result.response else {
