@@ -22,6 +22,6 @@ extension String {
     }
     
     var transformToArray: [String] {
-        self.components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ").filter {!$0.isEmpty }
+        self.components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ").filter { !$0.isEmpty }
     }
 }

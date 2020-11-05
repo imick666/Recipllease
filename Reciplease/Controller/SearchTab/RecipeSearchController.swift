@@ -31,6 +31,8 @@ final class RecipeSearchController: UIViewController {
         return underline
     }()
     
+    let activityIndicator = UIActivityIndicatorView()
+    
     var dataSource = [String]() {
         didSet {
             tableView.reloadData()
@@ -68,9 +70,15 @@ final class RecipeSearchController: UIViewController {
     }
     
     private func setupButtons() {
+        // Setup buttons with title and colors
         addIngredientButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Add", textColor: .white)
         clearButton.round(background: #colorLiteral(red: 0.5418370962, green: 0.5419180989, blue: 0.5418193936, alpha: 1), title: "Clear", textColor: .white)
         searchButton.round(background: #colorLiteral(red: 0.268276602, green: 0.5838349462, blue: 0.3624466658, alpha: 1), title: "Search for recipes", textColor: .white)
+        
+        // Setup activity indicator
+        activityIndicator.frame = searchButton.bounds
+        activityIndicator.color = .white
+        searchButton.addSubview(activityIndicator)
     }
 
     // MARK: - Navigation
@@ -103,6 +111,18 @@ final class RecipeSearchController: UIViewController {
     }
     
     @IBAction func searchButtonTapped(_ sender: Any) {
+        
+        // Check if ingredient list isn't empty
+        guard !dataSource.isEmpty else {
+            showAlert(title: "Error", message: "Please enter some ingredients")
+            return
+        }
+        
+        // Start Activity indicator
+        searchButton.setTitle("", for: .normal)
+        activityIndicator.startAnimating()
+        
+        // Get Recipes
         networkServices.getRecipes(q: dataSource) { (result) in
             switch result {
             case .failure(let error):
@@ -110,6 +130,10 @@ final class RecipeSearchController: UIViewController {
             case .success(let data):
                 self.performSegue(withIdentifier: Constants.Segues.RecipesList, sender: data)
             }
+            
+            // Reset button title and stop activity indicator
+            self.searchButton.setTitle("Search for recipes", for: .normal)
+            self.activityIndicator.stopAnimating()
         }
     }
 }
@@ -141,7 +165,7 @@ You can separate ingrients by a \",\"
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return dataSource.count != 0 ? 0 : 100
+        return !dataSource.isEmpty ? 0 : 100
     }
     
     // MARK: - Cell
