@@ -97,10 +97,6 @@ final class RecipeSearchController: UIViewController {
     @IBAction func addIngredientButtonTapped(_ sender: Any) {
         guard let ingredients = addIngredientTextField.text?.transformToArray else { return }
         for ingredient in ingredients {
-            guard ingredient.lowercased().ingredientNameIsCorrect else {
-                showAlert(title: "Erreur", message: "Please, enter a correct entry")
-                continue
-            }
             dataSource.append(ingredient.lowercased().trimmingCharacters(in: .whitespacesAndNewlines))
         }
         addIngredientTextField.text = nil
